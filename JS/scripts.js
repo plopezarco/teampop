@@ -57,37 +57,51 @@ function erosketa() {
         saski_num = prompt("Sartu erosiko dituzun produktu kopurua:")
     } while (!r.test(saski_num))
 
-    var produktuak = [];
+    var produktuak = []
     for (var i = 0; i < saski_num; i++) {
         var izena = prompt("Sartu " + (parseInt(i) + 1) + ". produktua: ")
-        var kopurua
+        var kopurua, prezioa;
         do {
             kopurua = prompt("Sartu " + izena + " kopurua: ")
-        } while (!r.test(kopurua));
-        produktuak.push({ izena: izena, kopurua: kopurua })
+        } while (!r.test(kopurua))
+        do {
+            prezioa = prompt("Sartu " + izena + " prezioa: ")
+        } while (!r.test(prezioa))
+        produktuak.push({ izena: izena, kopurua: kopurua, prezioa: prezioa })
     }
 
     var mezua = bezero_izena + ", hau da zure erosketa saskia: \n         "
     produktuak.forEach((element) => {
         mezua += element.izena + ", Unitateak: " + element.kopurua + "\n         "
-    });
-    alert(mezua);
+    })
+    alert(mezua)
+
+    kalkulatuPrezioa(produktuak)
 }
 
 function bezeroaGorde() {
-    var bezero_izena = prompt("Sartu zure izena:")
-    var bezero_abizena = prompt("Sartu zure abizena:")
-    var txartela = prompt("Sartu zure txartela:")
-    var helbidea = prompt("Sartu zure helbidea:")
+    var bezero_izena = prompt("Sartu zure izena:");
+    var bezero_abizena = prompt("Sartu zure abizena:");
+    var txartela = prompt("Sartu zure txartela:");
+    var helbidea = prompt("Sartu zure helbidea:");
 
-    alert("Izen osoa: " + bezero_izena + " " + bezero_abizena + "\n           Txartela: " + txartela + "\n           Helbidea: " + helbidea)
+    alert(
+        "Izen osoa: " +
+        bezero_izena +
+        " " +
+        bezero_abizena +
+        "\n           Txartela: " +
+        txartela +
+        "\n           Helbidea: " +
+        helbidea
+    );
 }
 
 function kalkulatuPrezioa(produktuak) {
-    var totala = 0
+    var totala = 0;
     produktuak.forEach((element) => {
-        totala += element.prezioa
-    })
+        totala += element.prezioa;
+    });
 
-    alert(totala)
+    alert("Erosketaren totala: " + totala);
 }
