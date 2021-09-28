@@ -144,8 +144,59 @@ def banatzailea_eguneratu(datuak):
         print("Ez dituzu datuak ondo sartu")
 
 
-def datuak_ezabatu():
-    mycursor = mydb.cursor()
+def datuak_ezabatu(taulaizena, datuak):
+    if taulaizena == "bezeroak":
+        bezeroak_ezabatu(datuak)
+    elif taulaizena == "ticket":
+        ticket_ezabatu(datuak)
+    elif taulaizena == "ticket_lerroak":
+        ticket_lerroak_ezabatu(datuak)
+    elif taulaizena == "produktuak":
+        produktuak_ezabatu(datuak)
+    elif taulaizena == "banatzailea":
+        banatzailea_ezabatu(datuak)
+    else:
+        print("Taula hori ez da existitzen")
+
+
+def bezeroak_ezabatu(datuak):
+    if len(datuak) == 1:
+        mycursor = mydb.cursor()
+        mycursor.execute("DELETE FROM banatzailea WHERE id_banatzailea = " + datuak[0])
+    else:
+        print("Ez dituzu datuak ondo sartu")
+
+
+def ticket_ezabatu(datuak):
+    if len(datuak) == 2:
+        mycursor = mydb.cursor()
+        mycursor.execute("DELETE FROM ticket WHERE id_ticket = "+ datuak[0] + " AND id_bezeroa = " + datuak[1])
+    else:
+        print("Ez dituzu datuak ondo sartu")
+
+
+def ticket_lerroak_ezabatu(datuak):
+    if len(datuak) == 2:
+        mycursor = mydb.cursor()
+        mycursor.execute("DELETE FROM ticket_lerroak WHERE id_ticket = " + datuak[0] + " AND id_produktua = " + datuak[1])
+    else:
+        print("Ez dituzu datuak ondo sartu")
+
+
+def produktuak_ezabatu(datuak):
+    if len(datuak) == 1:
+        mycursor = mydb.cursor()
+        mycursor.execute("DELETE FROM produktuak WHERE id_produktua = " + datuak[0])
+    else:
+        print("Ez dituzu datuak ondo sartu")
+
+
+def banatzailea_ezabatu(datuak):
+    if len(datuak) == 1:
+        mycursor = mydb.cursor()
+        mycursor.execute("DELETE FROM banatzailea WHERE id_banatzailea = " + datuak[0])
+    else:
+        print("Ez dituzu datuak ondo sartu")
 
 
 taulak_irakurri("produktuak")
