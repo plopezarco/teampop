@@ -82,8 +82,66 @@ def banatzailea_bete(datuak):
         print("Ez dituzu datuak ondo sartu")
 
 
-def datuak_eguneratu():
-    mycursor = mydb.cursor()
+def datuak_eguneratu(taulaizena, datuak):
+    if taulaizena == "bezeroak":
+        bezeroak_eguneratu(datuak)
+    elif taulaizena == "ticket":
+        ticket_eguneratu(datuak)
+    elif taulaizena == "ticket_lerroak":
+        ticket_lerroak_eguneratu(datuak)
+    elif taulaizena == "produktuak":
+        produktuak_eguneratu(datuak)
+    elif taulaizena == "banatzailea":
+        banatzailea_eguneratu(datuak)
+    else:
+        print("Taula hori ez da existitzen")
+
+
+def bezeroak_eguneratu(datuak):
+    if len(datuak) == 4:
+        mycursor = mydb.cursor()
+        mycursor.execute("UPDATE bezeroak SET izena = '" + datuak[1] + "', email = '" + datuak[2] +
+                         "', telefonoa = '" + datuak[3] + "' WHERE id_bezeroa = " + datuak[0])
+    else:
+        print("Ez dituzu datuak ondo sartu")
+
+
+def ticket_eguneratu(datuak):
+    if len(datuak) == 5:
+        mycursor = mydb.cursor()
+        mycursor.execute("UPDATE ticket SET data = '" + datuak[2] + "', totala = "+ datuak[3]
+                         + ", id_banatzailea = " + datuak[4] + " WHERE id_ticket = "+ datuak[0]
+                         + " AND id_bezeroa = " + datuak[1])
+    else:
+        print("Ez dituzu datuak ondo sartu")
+
+
+def ticket_lerroak_eguneratu(datuak):
+    if len(datuak) == 4:
+        mycursor = mydb.cursor()
+        mycursor.execute("UPDATE ticket_lerroak SET kantitatea = '" + datuak[2] + "', subtotala = '" + datuak[3]
+                         + "' WHERE id_ticket = " + datuak[0] + " AND id_produktua = " + datuak[1])
+    else:
+        print("Ez dituzu datuak ondo sartu")
+
+
+def produktuak_eguneratu(datuak):
+    if len(datuak) == 2:
+        mycursor = mydb.cursor()
+        mycursor.execute("UPDATE produktuak SET izena = '" + datuak[1] + "', prezioa = " + datuak[2]
+                         + " WHERE id_produktua = " + datuak[0])
+    else:
+        print("Ez dituzu datuak ondo sartu")
+
+
+def banatzailea_eguneratu(datuak):
+    if len(datuak) == 4:
+        mycursor = mydb.cursor()
+        mycursor.execute("UPDATE banatzailea SET nan = '" + datuak[1] + "', izena = '" + datuak[2]
+                         + "', abizena = '" + datuak[3] + "', libre_dago = " + datuak[4]
+                         + " WHERE id_banatzailea = " + datuak[0])
+    else:
+        print("Ez dituzu datuak ondo sartu")
 
 
 def datuak_ezabatu():
