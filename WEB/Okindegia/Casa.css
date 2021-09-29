@@ -1487,3 +1487,343 @@
         font-size: 3.75rem;
     }
 }
+
+@media (min-width: 1200px) {
+    .u-block-8d81-1 {
+        min-height: 687px;
+    }
+    .u-block-8d81-2 {
+        margin-top: 0;
+        margin-right: auto;
+        margin-bottom: 0;
+        margin-left: 0;
+    }
+    .u-block-8d81-3 {
+        background-image: url("images/chocolatedessertbrowniescake.jpg?rand=7741");
+        min-height: 687px;
+        background-position: 50% 50%;
+    }
+    .u-block-8d81-5 {
+        min-height: 687px;
+    }
+    .u-block-8d81-6 {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+    .u-block-8d81-7 {
+        font-size: 3rem;
+        margin-top: 75px;
+        margin-left: 0;
+        margin-right: 0;
+        margin-bottom: 0;
+    }
+    .u-block-8d81-8 {
+        font-style: italic;
+        font-weight: 300;
+        font-size: 1.125rem;
+        margin-top: 20px;
+        margin-left: 0;
+        margin-right: 0;
+        margin-bottom: 0;
+    }
+    .u-block-8d81-9 {
+        margin-top: 20px;
+        margin-left: 0;
+        margin-right: 0;
+        margin-bottom: 0;
+    }
+    .u-block-8d81-10 {
+        width: 147px;
+        height: 3px;
+        transform-origin: left center 0;
+        border-style: dotted;
+        margin-top: 36px;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 0;
+    }
+    .u-block-8d81-11 {
+        background-image: none;
+        margin-top: 39px;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 75px;
+    }
+    .u-block-8d81-12 {
+        background-image: url("images/pexelsphoto973238.jpg?rand=b819");
+        min-height: 687px;
+        background-position: 74.03% 50%;
+    }
+}
+
+@media (max-width: 1199px) and (min-width: 992px) {
+    .u-block-8d81-1 {
+        min-height: 687px;
+    }
+    .u-block-8d81-2 {
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+    .u-block-8d81-3 {
+        background-image: url("images/chocolatedessertbrowniescake.jpg?rand=7741");
+        min-height: 687px;
+        background-position: 50% 50%;
+    }
+    .u-block-8d81-5 {
+        min-height: 687px;
+    }
+    .u-block-8d81-6 {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+    .u-block-8d81-7 {
+        position: relative;
+        font-size: 3rem;
+        margin-top: 75px;
+        margin-left: 0;
+        margin-right: 0;
+        margin-bottom: 0;
+    }
+    .u-block-8d81-8 {
+        position: relative;
+        font-style: italic;
+        font-weight: 300;
+        font-size: 1.125rem;
+        margin-top: 20px;
+        margin-left: 0;
+        margin-right: 0;
+        margin-bottom: 0;
+    }
+    .u-block-8d81-9 {
+        margin-top: 20px;
+        margin-left: 0;
+        margin-right: 0;
+        margin-bottom: 0;
+    }
+    .u-block-8d81-10 {
+        width: 121px;
+        height: 3px;
+        transform-origin: left center 0;
+        border-style: dotted;
+        margin-top: 36px;
+        margin-left: 97px;
+        margin-right: 97px;
+        margin-bottom: 0;
+    }
+    .u-block-8d81-11 {
+        background-image: none;
+        margin-top: 39px;
+        margin-left: 87px;
+        margin-right: 87px;
+        margin-bottom: 75px;
+    }
+    .u-block-8d81-12 {
+        background-image: url("images/pexelsphoto973238.jpg?rand=b819");
+        min-height: 687px;
+        background-position: 74.03% 50%;
+    }
+}
+
+@media (max-width: 991px) and (min-width: 768px) {
+    .u-block-8d81-1 {
+        min-height: 687px;
+    }
+    .u-block-8d81-2 {
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+    .u-block-8d81-3 {
+        background-image: url("images/chocolatedessertbrowniescake.jpg?rand=7741");
+        min-height: 687px;
+        background-position: 50% 50%;
+    }
+    .u-block-8d81-5 {
+        min-height: 687px;
+    }
+    .u-block-8d81-6 {
+        padding-left: 13px;
+        padding-right: 13px;
+    }
+    .u-block-8d81-7 {
+        position: relative;
+        font-size: 3rem;
+        margin-top: 75px;
+        margin-left: 0;
+        margin-right: 0;
+        margin-bottom: 0;
+    }
+    .u-block-8d81-8 {
+        position: relative;
+        font-style: italic;
+        font-weight: 300;
+        font-size: 1.125rem;
+        margin-top: 20px;
+        margin-left: 0;
+        margin-right: 0;
+        margin-bottom: 0;
+    }
+    .u-block-8d81-9 {
+        margin-top: 20px;
+        margin-left: 0;
+        margin-right: 0;
+        margin-bottom: 0;
+    }
+    .u-block-8d81-10 {
+        width: 93px;
+        height: 3px;
+        transform-origin: left center 0;
+        border-style: dotted;
+        margin-top: 36px;
+        margin-right: 77px;
+        margin-bottom: 0;
+        margin-left: 77px;
+    }
+    .u-block-8d81-11 {
+        background-image: none;
+        margin-top: 39px;
+        margin-right: 53px;
+        margin-bottom: 75px;
+        margin-left: 53px;
+    }
+    .u-block-8d81-12 {
+        background-image: url("images/pexelsphoto973238.jpg?rand=b819");
+        min-height: 687px;
+        background-position: 74.03% 50%;
+    }
+}
+
+@media (max-width: 991px) and (min-width: 768px) {
+    .u-block-8d81-1 {
+        min-height: 687px;
+    }
+    .u-block-8d81-2 {
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+    .u-block-8d81-3 {
+        background-image: url("images/chocolatedessertbrowniescake.jpg?rand=7741");
+        min-height: 687px;
+        background-position: 50% 50%;
+    }
+    .u-block-8d81-5 {
+        min-height: 687px;
+    }
+    .u-block-8d81-6 {
+        padding-left: 13px;
+        padding-right: 13px;
+    }
+    .u-block-8d81-7 {
+        position: relative;
+        font-size: 3rem;
+        margin-top: 75px;
+        margin-left: 0;
+        margin-right: 0;
+        margin-bottom: 0;
+    }
+    .u-block-8d81-8 {
+        position: relative;
+        font-style: italic;
+        font-weight: 300;
+        font-size: 1.125rem;
+        margin-top: 20px;
+        margin-left: 0;
+        margin-right: 0;
+        margin-bottom: 0;
+    }
+    .u-block-8d81-9 {
+        margin-top: 20px;
+        margin-left: 0;
+        margin-right: 0;
+        margin-bottom: 0;
+    }
+    .u-block-8d81-10 {
+        width: 93px;
+        height: 3px;
+        transform-origin: left center 0;
+        border-style: dotted;
+        margin-top: 36px;
+        margin-right: 77px;
+        margin-bottom: 0;
+        margin-left: 77px;
+    }
+    .u-block-8d81-11 {
+        background-image: none;
+        margin-top: 39px;
+        margin-right: 53px;
+        margin-bottom: 75px;
+        margin-left: 53px;
+    }
+    .u-block-8d81-12 {
+        background-image: url("images/pexelsphoto973238.jpg?rand=b819");
+        min-height: 687px;
+        background-position: 74.03% 50%;
+    }
+}
+
+@media (max-width: 575px) {
+    .u-block-8d81-1 {
+        min-height: 687px;
+    }
+    .u-block-8d81-2 {
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+    .u-block-8d81-3 {
+        background-image: url("images/chocolatedessertbrowniescake.jpg?rand=7741");
+        min-height: 687px;
+        background-position: 50% 50%;
+    }
+    .u-block-8d81-5 {
+        min-height: 687px;
+    }
+    .u-block-8d81-6 {
+        padding-left: 6px;
+        padding-right: 6px;
+    }
+    .u-block-8d81-7 {
+        position: relative;
+        font-size: 3rem;
+        margin-top: 75px;
+        margin-left: 0;
+        margin-right: 0;
+        margin-bottom: 0;
+    }
+    .u-block-8d81-8 {
+        position: relative;
+        font-style: italic;
+        font-weight: 300;
+        font-size: 1.125rem;
+        margin-top: 20px;
+        margin-left: 0;
+        margin-right: 0;
+        margin-bottom: 0;
+    }
+    .u-block-8d81-9 {
+        margin-top: 20px;
+        margin-left: 0;
+        margin-right: 0;
+        margin-bottom: 0;
+    }
+    .u-block-8d81-10 {
+        width: 73px;
+        height: 3px;
+        transform-origin: left center 0;
+        border-style: dotted;
+        margin-top: 36px;
+        margin-left: 178px;
+        margin-right: 178px;
+        margin-bottom: 0;
+    }
+    .u-block-8d81-11 {
+        background-image: none;
+        margin-top: 39px;
+        margin-left: 144px;
+        margin-right: 144px;
+        margin-bottom: 75px;
+    }
+    .u-block-8d81-12 {
+        background-image: url("images/pexelsphoto973238.jpg?rand=b819");
+        min-height: 687px;
+        background-position: 74.03% 50%;
+    }
+}
