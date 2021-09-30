@@ -99,9 +99,11 @@ function erosketa() {
     produktuak.forEach((element) => {
         mezua += element.izena + ", Unitateak: " + element.kopurua + "\n         ";
     });
-    alert(mezua);
 
-    kalkulatuPrezioa(produktuak);
+    var totala = kalkulatuPrezioa(produktuak);
+
+    mezua += "\nErosketaren totala: " + totala;
+    alert(mezua);
 }
 
 function bezeroaGorde() {
@@ -125,10 +127,10 @@ function bezeroaGorde() {
 function kalkulatuPrezioa(produktuak) {
     var totala = 0;
     produktuak.forEach((element) => {
-        totala += element.prezioa;
+        totala += parseInt(element.prezioa * element.kopurua);
     });
 
-    alert("Erosketaren totala: " + totala);
+    return totala
 }
 
 var mybutton = document.getElementById("scroll_top");
