@@ -40,6 +40,8 @@ function login() {
             document.getElementById("login2").style.display = "none";
             document.getElementById("logout1").style.display = "block";
             document.getElementById("logout2").style.display = "block";
+            document.getElementById("saskia1").style.display = "block";
+            document.getElementById("saskia2").style.display = "block";
             return;
         }
     });
@@ -56,6 +58,8 @@ function logout() {
     document.getElementById("login2").style.display = "block";
     document.getElementById("logout1").style.display = "none";
     document.getElementById("logout2").style.display = "none";
+    document.getElementById("saskia1").style.display = "none";
+    document.getElementById("saskia2").style.display = "none";
 }
 
 function data() {
@@ -145,9 +149,13 @@ if (sessionStorage.Loged == "true") {
     document.getElementById("login2").style.display = "none";
     document.getElementById("logout1").style.display = "block";
     document.getElementById("logout2").style.display = "block";
+    document.getElementById("saskia1").style.display = "block";
+    document.getElementById("saskia2").style.display = "block";
 } else {
     document.getElementById("login1").style.display = "block";
     document.getElementById("login2").style.display = "block";
     document.getElementById("logout1").style.display = "none";
     document.getElementById("logout2").style.display = "none";
+    document.getElementById("saskia1").style.display = "none";
+    document.getElementById("saskia2").style.display = "none";
 }
