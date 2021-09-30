@@ -25,7 +25,11 @@ function login() {
     ];
 
     var user = prompt("Sartu erabiltzailea:");
+    if (user == null) {
+        return
+    }
     var pass = prompt("Sartu pasahitza:");
+
 
     erabiltzaileak.forEach((element) => {
         if (element.user == user && element.pass == pass) {
