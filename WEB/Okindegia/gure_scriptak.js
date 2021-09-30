@@ -29,12 +29,14 @@ function login() {
         return
     }
     var pass = prompt("Sartu pasahitza:");
-
+    if (pass == null) {
+        return
+    }
 
     erabiltzaileak.forEach((element) => {
         if (element.user == user && element.pass == pass) {
             sessionStorage.Izena = element.user;
-            sessionStorage.Loged = true;
+            sessionStorage.Loged = "true";
             alert("Ongi etorri, " + sessionStorage.Izena);
             document.getElementById("login1").style.display = "none";
             document.getElementById("login2").style.display = "none";
@@ -46,7 +48,7 @@ function login() {
         }
     });
 
-    if (!sessionStorage.Loged) {
+    if (sessionStorage.Loged != "true") {
         alert("Saiatu berriz");
     }
 }
