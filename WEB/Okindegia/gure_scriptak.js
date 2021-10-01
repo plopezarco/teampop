@@ -40,6 +40,8 @@ function login() {
             alert("Ongi etorri, " + sessionStorage.Izena);
             document.getElementById("login1").style.display = "none";
             document.getElementById("login2").style.display = "none";
+            document.getElementById("register1").style.display = "none";
+            document.getElementById("register2").style.display = "none";
             document.getElementById("logout1").style.display = "block";
             document.getElementById("logout2").style.display = "block";
             document.getElementById("saskia1").style.display = "block";
@@ -58,6 +60,8 @@ function logout() {
     sessionStorage.Loged = false;
     document.getElementById("login1").style.display = "block";
     document.getElementById("login2").style.display = "block";
+    document.getElementById("register1").style.display = "block";
+    document.getElementById("register2").style.display = "block";
     document.getElementById("logout1").style.display = "none";
     document.getElementById("logout2").style.display = "none";
     document.getElementById("saskia1").style.display = "none";
@@ -151,6 +155,8 @@ function scrollFunction() {
 if (sessionStorage.Loged == "true") {
     document.getElementById("login1").style.display = "none";
     document.getElementById("login2").style.display = "none";
+    document.getElementById("register1").style.display = "none";
+    document.getElementById("register2").style.display = "none";
     document.getElementById("logout1").style.display = "block";
     document.getElementById("logout2").style.display = "block";
     document.getElementById("saskia1").style.display = "block";
@@ -158,6 +164,8 @@ if (sessionStorage.Loged == "true") {
 } else {
     document.getElementById("login1").style.display = "block";
     document.getElementById("login2").style.display = "block";
+    document.getElementById("register1").style.display = "block";
+    document.getElementById("register2").style.display = "block";
     document.getElementById("logout1").style.display = "none";
     document.getElementById("logout2").style.display = "none";
     document.getElementById("saskia1").style.display = "none";
