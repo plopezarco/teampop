@@ -40002,3 +40002,7 @@ html {
     object-fit: cover;
     width: 35px;
 }
+
+.u-image-jah {
+    background-image: url("images/jah.png");
+}

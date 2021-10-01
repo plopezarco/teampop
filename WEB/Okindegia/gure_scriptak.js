@@ -163,3 +163,8 @@ if (sessionStorage.Loged == "true") {
     document.getElementById("saskia1").style.display = "none";
     document.getElementById("saskia2").style.display = "none";
 }
+
+function bidalita() {
+    alert("Zure mezua bidali da.")
+    location.reload()
+}
