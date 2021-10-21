@@ -1,0 +1,23 @@
+<html>
+<body>
+{%include "superior/barra.html"%}
+<h1>
+    Hola mundo
+</h1>
+{% if persona.nombre != "Pablo" %}
+    <p>No eres Pablo</p>
+{%endif%}
+<p>Mi nombre es: {{persona.nombre}} {{persona.apellido}}</p>
+<p>Hoy es {{ahora.day}} de {{ahora.month}} de {{ahora.year}} </p>
+{% if animes %}
+<ul>
+    {%for a in animes%}
+    <li>{{a}}</li>
+    {%endfor%}
+</ul>
+
+{% else %}
+<p>No hay valores en la lista</p>
+{%endif%}
+</body>
+</html>
