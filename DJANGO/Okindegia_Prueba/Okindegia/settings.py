@@ -20,7 +20,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-t!s=0dc2l#i%nqg#z67jr*w%i-2-s-c8x6at82*47lw6r0vf58'
+SECRET_KEY = 'django-insecure-s^_x75azrgeqps7jk_n1(kam0i@do)%eu@0q$6^wmj1nnw&rst'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -37,7 +37,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'baloOkindegia',
 ]
 
 MIDDLEWARE = [
@@ -55,7 +54,7 @@ ROOT_URLCONF = 'Okindegia.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ["C:/Users/lopez.pablo/Documents/GitHub/teampop/DJANGO/Okindegia/Okindegia/templates/"],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -76,12 +75,8 @@ WSGI_APPLICATION = 'Okindegia.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'okindegia',
-        'USER': 'erronka',
-        'PASSWORD': '1234',
-        'HOST': 'localhost',
-        'PORT': '3308',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 

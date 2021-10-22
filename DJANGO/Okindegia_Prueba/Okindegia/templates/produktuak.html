@@ -1,0 +1,13 @@
+{% extends "base.html "%} {% block title %} Produktuak {%endblock%} {% block content%}
+
+<p>{{p1.Izena}}</p>
+{% if produktuak %}
+<ul>
+    {%for p in produktuak%}
+    <li>{{p.izena}} / {{p.prezioa}}</li>
+    {%endfor%}
+</ul>
+{%else%}
+<p>dfjsiaofijdfj</p>
+
+{%endif%}{%endblock%}
