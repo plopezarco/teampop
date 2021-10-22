@@ -34,6 +34,49 @@
                 color:#6a6f8c;
                 background:url(https://estaticos.qdq.com/swdata/home_photos/055/055619644/5e5dc94ddb0840d7a3ef04be9f62a04c.jpg);
                 font:600 16px/18px 'Open Sans',sans-serif;
+                font-family: Arial, Helvetica, sans-serif;
+            }
+           ;
+
+            /* The Modal (background) */
+            .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1; /* Sit on top */
+            padding-top: 100px; /* Location of the box */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgb(0,0,0); /* Fallback color */
+            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+            }
+
+            /* Modal Content */
+            .modal-content {
+            background-color: #fefefe;
+            margin: auto;
+            height: 100%;
+            width: 100%;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            }
+
+            /* The Close Button */
+            .close {
+            color: #aaaaaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            }
+
+            .close:hover,
+            .close:focus {
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
             }
             *,:after,:before{box-sizing:border-box}
             .clearfix:after,.clearfix:before{content:'';display:table}
@@ -181,7 +224,7 @@
             }
         </style>
     </head>
-    <bodydata-home-page="Casa.html" data-home-page-title="Casa" class="u-body">
+    <body data-home-page="Casa.html" data-home-page-title="Casa" class="u-body">
         <header class="u-clearfix u-header u-header u-sticky u-overlap" style="background-color: white;" id="sec-9da1">
             <div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
                 <a href="index.html" class="u-image u-logo u-image-1">
@@ -258,56 +301,6 @@
                 </nav>
             </div>
         </header>
-        <div class="login-wrap">
-            <div class="login-html">
-                <input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Sign In</label>
-                <input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab">Sign Up</label>
-                <div class="login-form">
-                    <div class="sign-in-htm">
-                        <div class="group">
-                            <label for="user" class="label">Username</label>
-                            <input id="user" type="text" class="input">
-                        </div>
-                        <div class="group">
-                            <label for="pass" class="label">Password</label>
-                            <input id="pass" type="password" class="input" data-type="password">
-                        </div>
-                        <div class="group">
-                            <input id="check" type="checkbox" class="check">
-                            <label for="check"><span class="icon"></span> Keep me Signed in</label>
-                        </div>
-                        <div class="group">
-                            <input type="submit" class="button" value="Sign In">
-                        </div>
-                        <div class="hr"></div>
-                        <div class="foot-lnk">
-                            <a href="#forgot">Forgot Password?</a>
-                        </div>
-                    </div>
-                    <div class="sign-up-htm">
-                        <div class="group">
-                            <label for="user" class="label">Username</label>
-                            <input id="user" type="text" class="input">
-                        </div>
-                        <div class="group">
-                            <label for="pass" class="label">Password</label>
-                            <input id="pass" type="password" class="input" data-type="password">
-                        </div>
-                        <div class="group">
-                            <label for="pass" class="label">Repeat Password</label>
-                            <input id="pass" type="password" class="input" data-type="password">
-                        </div>
-                        <div class="group">
-                            <label for="pass" class="label">Email</label>
-                            <input id="pass" type="email" class="input">
-                        </div>
-                        <div class="group">
-                            <input type="submit" class="button" value="Sign Up">
-                        </div>  
-                        <div class="hr"></div> 
-                    </div>
-                </div>
-            </div>
-        </div>
+        
     </body>
 </html>
