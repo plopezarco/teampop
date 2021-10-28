@@ -1,0 +1,20 @@
+{% extends "base.html "%}{% load static %}{% load columns %}{% block title %} Produktuak {%endblock%} {% block content%}
+
+<head>
+    <link rel="stylesheet " href="{%static 'css/Casa.css'%} " media="screen">
+</head>
+<section class="u-clearfix u-section-1 u-align-center" style="background-image: none;" id="sec-333f">
+    <div class="u-clearfix u-sheet u-sheet-1">
+        <div class="u-list u-list-1">
+            <div class="u-repeater u-repeater-1">
+                {%for p in produktuak%}
+                <div class="produktu-irudia u-container-style u-image u-list-item u-repeater-item u-image-1 " style="background-image: url({{p.irudia}})" data-image-width="1280" data-image-height="853">
+                    <div class="u-container-layout u-similar-container u-container-layout-1"></div>
+                </div>
+                {%endfor%}
+            </div>
+        </div>
+    </div>
+</section>
+</br>
+{%endblock%}

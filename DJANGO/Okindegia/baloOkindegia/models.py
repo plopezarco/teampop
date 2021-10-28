@@ -23,6 +23,7 @@ class Produktua(models.Model):
     izena = models.CharField(max_length=50)
     prezioa = models.FloatField()
     irudia = models.TextField()
+    kategoria = models.TextField()
 
 class Ticket(models.Model):
     id_ticket = models.CharField(max_length=50)

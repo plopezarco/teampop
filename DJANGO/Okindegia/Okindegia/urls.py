@@ -15,7 +15,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from baloOkindegia import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('produktuak/', views.produktuak),
+    path('index/', views.index),
+    path('about/', views.about),
+    path('contact/', views.contact),
 ]
