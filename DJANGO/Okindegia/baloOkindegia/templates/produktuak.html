@@ -2,8 +2,6 @@
 
 <head>
     <link rel="stylesheet " href="{%static 'css/produktuak.css'%} " media="screen">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <section class="section-products">
     <div class="container">
@@ -14,15 +12,15 @@
                 </div>
             </div>
         </div>
-        <div class="row">
+        <div class="row" id="produktu-lista">
             {%for p in produktuak%}
             <div class="col-md-6 col-lg-6 col-xl-4">
                 <div class="single-product">
                     <div class="part-1">
-                        <img src="{{p.irudia}}">
+                        <img id="produktu-irudia-{{p.id}}" src="{{p.irudia}}">
                         <ul>
-                            <li><a href="#"><i class="icon fa fa-shopping-cart"></i></a></li>
-                            <li><a href="#" data-toggle="modal" data-target="#produktu{{p.id}}"><i class="icon fa fa-expand"></i></a></li>
+                            <li><a href="#0" id="{{p.id}}" class="saskira-gehitu"><i class="icon fa fa-shopping-cart"></i></a></li>
+                            <li><a href="#0" data-toggle="modal" data-target="#produktu{{p.id}}"><i class="icon fa fa-expand"></i></a></li>
                         </ul>
                     </div>
                     <div class="modal fade bd-example-modal-lg" id="produktu{{p.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -37,8 +35,8 @@
                         </div>
                     </div>
                     <div class="part-2">
-                        <h3 class="product-title">{{p.izena}}</h3>
-                        <h4 class="product-price">{{p.prezioa|floatformat:2}}€</h4>
+                        <h3 id="produktu-izena-{{p.id}}" class="product-title">{{p.izena}}</h3>
+                        <h4 id="produktu-prezioa-{{p.id}}" class="product-price">{{p.prezioa|floatformat:2}}€</h4>
                     </div>
                 </div>
             </div>
@@ -46,7 +44,4 @@
         </div>
     </div>
 </section>
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
 {%endblock%}

@@ -39,15 +39,28 @@
                         <a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" id="login1" style="cursor: pointer;" onclick="login()" style="padding: 10px 20px;">Login</a>
                     </li>
                     <li class="u-nav-item">
-                        <a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" id="register1" style="cursor: pointer;" onclick="bezeroaGorde()" style="padding: 10px 20px;">Erregistratu</a>
+                        <a href="#0" class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base saskia-erakutsi dropdown-toggle" id="saskia-botoia" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="cursor: pointer;">
+                            <img src="{%static 'images/cesta.svg'%}" class="saskia" title="Saskia">
+                        </a>
+                        <div id="saskia" class="dropdown-menu" aria-labelledby="navbarCollapse">
+                            <table id="saskia-lista" class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Irudia</th>
+                                        <th>Produktua</th>
+                                        <th>Prezioa</th>
+                                        <th>Kopurua</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody id="saskia-lista-tbody"></tbody>
+                            </table>
+                            <a href="#" id="saskia-hustu" class="btn btn-primary btn-block">Saskia Hustu</a>
+                            <a href="#" id="procesar-pedido" class="btn btn-danger btn-block">Procesar Compra</a>
+                        </div>
                     </li>
                     <li class="u-nav-item">
                         <a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" id="logout1" style="cursor: pointer; display: none;" onclick="logout()" style="padding: 10px 20px;">Logout</a>
-                    </li>
-                    <li class="u-nav-item">
-                        <a href="#" class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" id="saskia1" style="cursor: pointer; display: none;" onclick="erosketa()">
-                            <img src="{%static 'images/cesta.svg'%}" class="saskia" title="Saskia">
-                        </a>
                     </li>
                 </ul>
             </div>
@@ -69,20 +82,17 @@
                                 <a class="u-button-style u-nav-link" id="login2" style="cursor: pointer;" onclick="login()">Login</a>
                             </li>
                             <li class="u-nav-item">
-                                <a class="u-button-style u-nav-link" id="register2" style="cursor: pointer;" onclick="bezeroaGorde()">Erregistratu</a>
-                            </li>
-                            <li class="u-nav-item">
                                 <a class="u-button-style u-nav-link" id="logout2" style="cursor: pointer; display: none;" onclick="logout()">Logout</a>
                             </li>
                             <li class="u-nav-item">
-                                <a href="#" class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" id="saskia2" style="cursor: pointer; display: none;">
-                                    <img src="{%static 'images/cesta2.svg'%}" class="saskia" title="Saskia">
+                                <a href="#" class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base saskia-erakutsi" id="saskia2" style="cursor: pointer;">
+                                    <img src="{%static 'images/cesta2.svg'%}" class="saskia " title="Saskia ">
                                 </a>
                             </li>
                         </ul>
                     </div>
                 </div>
-                <div class="u-black u-menu-overlay u-opacity u-opacity-70"></div>
+                <div class="u-black u-menu-overlay u-opacity u-opacity-70 "></div>
             </div>
         </nav>
     </div>
