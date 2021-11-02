@@ -36,13 +36,14 @@
                         <a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="/contact" style="padding: 10px 20px;">Kontaktua</a>
                     </li>
                     <li class="u-nav-item">
-                        <a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" id="login1" style="cursor: pointer;" onclick="login()" style="padding: 10px 20px;">Login</a>
+                        <a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" id="login-btn" style="cursor: pointer;" style="padding: 10px 20px;">Login</a>
                     </li>
                     <li class="u-nav-item">
                         <a href="#0" class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base saskia-erakutsi dropdown-toggle" id="saskia-botoia" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="cursor: pointer;">
                             <img src="{%static 'images/cesta.svg'%}" class="saskia" title="Saskia">
                         </a>
-                        <div id="saskia" class="dropdown-menu" aria-labelledby="navbarCollapse">
+
+                        <div id="saskia" class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarCollapse">
                             <table id="saskia-lista" class="table">
                                 <thead>
                                     <tr>
@@ -54,9 +55,15 @@
                                     </tr>
                                 </thead>
                                 <tbody id="saskia-lista-tbody"></tbody>
+                                <tfoot>
+                                    <tr>
+                                        <td colspan="5">
+                                            <a href="#" id="saskia-hustu" class="btn btn-primary btn-block">Saskia Hustu</a>
+                                            <a href="#" id="procesar-pedido" class="btn btn-danger btn-block">Erosi</a>
+                                        </td>
+                                    </tr>
+                                </tfoot>
                             </table>
-                            <a href="#" id="saskia-hustu" class="btn btn-primary btn-block">Saskia Hustu</a>
-                            <a href="#" id="procesar-pedido" class="btn btn-danger btn-block">Procesar Compra</a>
                         </div>
                     </li>
                     <li class="u-nav-item">
@@ -95,5 +102,6 @@
                 <div class="u-black u-menu-overlay u-opacity u-opacity-70 "></div>
             </div>
         </nav>
+        {%include "superior/login.html"%}
     </div>
 </header>

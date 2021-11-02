@@ -8,4 +8,10 @@ $(document).ready(function() {
     $("#saskia-hustu").click(function() {
         localStorageBorratu()
     });
+    $("#modal-login").click(function() {
+        document.getElementById("modal-login").style.display = "none";
+    });
+    $("#login-btn").click(function() {
+        document.getElementById("modal-login").style.display = "block";
+    });
 });
