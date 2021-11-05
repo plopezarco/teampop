@@ -12,6 +12,21 @@
                 </div>
             </div>
         </div>
+        <div class="row filters-container" id="filters">
+            <ul class="radio-ul">
+                <li>
+                    <input class="filters" type="radio" id="guztiak" name="kategoria" value="Guztiak" checked>
+                    <label for="guztiak">Guztiak</label>
+                </li>
+                {%for kategoria in kategoriak%}
+                <li>
+                    <input class="filters" type="radio" id="{{kategoria}}" name="kategoria" value="{{kategoria}}">
+                    <label for="{{kategoria}}">{{kategoria}}</label>
+                </li>
+                {%endfor%}
+            </ul>
+
+        </div>
         <div class="row" id="produktu-lista">
             {%for p in produktuak%}
             <div class="col-md-6 col-lg-6 col-xl-4">

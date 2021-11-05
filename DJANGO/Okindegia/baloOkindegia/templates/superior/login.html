@@ -1,51 +1,55 @@
 {% load static %}
 <div id="modal-login" class="modalLogin">
     <link rel="stylesheet " href="{%static 'css/login.css'%} " media="screen">
-    <div class="login-wrap">
+    <div class="login-wrap" id="modal-content">
         <div class="login-html" id="login">
-            <input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Sign In</label>
-            <input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab">Sign Up</label>
+            <input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Sartu</label>
+            <input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab">Erregistratu</label>
             <div class="login-form">
-                <div class="sign-in-htm">
-                    <div class="group">
-                        <label for="user" class="label">Username</label>
-                        <input id="user" type="text" class="input">
+                <form action="/user_login/" method="POST">
+                    {% csrf_token %}
+                    <div class="sign-in-htm">
+                        <div class="group">
+                            <label for="erabiltzailea-login" class="label">Erabiltzailea</label>
+                            <input id="erabiltzailea-login" name="erabiltzailea-login" type="text" class="input" required>
+                        </div>
+                        <div class="group">
+                            <label for="pasahitza-login" class="label">Pasahitza</label>
+                            <input id="pasahitza-login" name="pasahitza-login" type="password" class="input" data-type="password" required>
+                        </div>
+                        <br>
+                        <div class="group">
+                            <input type="submit" class="button" value="Sartu">
+                        </div>
+                        <div class="foot-lnk">
+                            <a href="#forgot" class="foot-lnk">Pasahitza ahaztu duzu?</a>
+                        </div>
                     </div>
-                    <div class="group">
-                        <label for="pass" class="label">Password</label>
-                        <input id="pass" type="password" class="input" data-type="password">
-                    </div>
-                    <div class="group">
-                        <input id="check" type="checkbox" class="check">
-                        <label for="check"><span class="icon"></span> Keep me Signed in</label>
-                    </div>
-                    <div class="group">
-                        <input type="submit" class="button" value="Sign In">
-                    </div>
-                    <div class="foot-lnk">
-                        <a href="#forgot" class="foot-lnk">Forgot Password?</a>
-                    </div>
-                </div>
+                </form>
                 <div class="sign-up-htm">
-                    <div class="group">
-                        <label for="user" class="label">Username</label>
-                        <input id="user" type="text" class="input">
-                    </div>
-                    <div class="group">
-                        <label for="pass" class="label">Password</label>
-                        <input id="pass" type="password" class="input" data-type="password">
-                    </div>
-                    <div class="group">
-                        <label for="pass" class="label">Repeat Password</label>
-                        <input id="pass" type="password" class="input" data-type="password">
-                    </div>
-                    <div class="group">
-                        <label for="pass" class="label">Email</label>
-                        <input id="pass" type="email" class="input">
-                    </div>
-                    <div class="group">
-                        <input type="submit" class="button" value="Sign Up">
-                    </div>
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="group">
+                            <label for="erabiltzailea-register" class="label">Erabiltzailea</label>
+                            <input id="erabiltzailea-register" type="text" class="input">
+                        </div>
+                        <div class="group">
+                            <label for="pasahitza-register" class="label">Pasahitza</label>
+                            <input id="pasahitza-register" type="password" class="input" data-type="password">
+                        </div>
+                        <div class="group">
+                            <label for="pasahitza2" class="label">Pasahitza Errepikatu</label>
+                            <input id="pasahitza2" type="password" class="input" data-type="password">
+                        </div>
+                        <div class="group">
+                            <label for="email" class="label">Email</label>
+                            <input id="email" type="email" class="input">
+                        </div>
+                        <br>
+                        <div class="group">
+                            <input type="submit" class="button" value="Erregistratu">
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>

@@ -1,0 +1,27 @@
+{% extends "base.html "%}{% load static %} {% block title %} Zure Erosketa {%endblock%} {% block content%}
+<table id="saskia-lista" class="table">
+    <thead>
+        <tr>
+            <th>Irudia</th>
+            <th>Produktua</th>
+            <th>Prezioa</th>
+            <th>Kopurua</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody id="erosi-lista-tbody">
+        {%for element in produktuakLista%}
+        <td>
+            <img src="{{element.irudia}}" width=100>
+        </td>
+        <td>{{element.izena}}</td>
+        <td>{{element.prezioa}}</td>
+        <td>{{element.kopurua}}</td>
+        <td>
+            <a href="#0" class="produktua-ezabatu" data-id="{{element.id}}"><i class="icon fa fa-times-circle"></i></a>
+        </td>
+        {%endfor%}
+    </tbody>
+</table>
+<script src="{%static 'js/erosi.js'%}"></script>
+{%endblock%}
