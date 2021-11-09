@@ -54,18 +54,24 @@ function saskiaIkusi() {
     produktuLista = localStorageIrakurri()
     var s = ""
     produktuakGehituTaulara()
+    try {
+        produktuakGehituListara()
+        $(".plus").click(function() {
+            kantitateaGehitu(this.id)
+        });
+        $(".minus").click(function() {
+            kantitateaKendu(this.id)
+        });
+    } catch (error) {
+        console.error(error);
+    }
     $(".produktua-ezabatu").click(function() {
         produktuaEzabatu($(this).data("id"))
     });
 }
 
 function produktuakGehituTaulara(taula) {
-    var produktuTaula
-    if (taula !== undefined) {
-        produktuTaula = document.getElementById(taula)
-    } else {
-        produktuTaula = document.getElementById('saskia-lista-tbody')
-    }
+    var produktuTaula = document.getElementById('saskia-lista-tbody')
     produktuTaula.innerHTML = ""
     produktuLista = localStorageIrakurri()
     produktuLista.forEach(element => {
@@ -81,6 +87,17 @@ function produktuakGehituTaulara(taula) {
 	</td>`
         produktuTaula.appendChild(row)
     });
+}
+
+function produktuaAldatu(id, kopurua) {
+    produktuLista = localStorageIrakurri()
+    produktuLista.forEach(function(element, index) {
+        if (element.id == id) {
+            element.kopurua = kopurua
+        }
+    });
+    localStorage.setItem('produktuak', JSON.stringify(produktuLista))
+    saskiaIkusi()
 }
 
 function getCookie(name) {

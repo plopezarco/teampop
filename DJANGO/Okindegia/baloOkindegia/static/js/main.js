@@ -22,6 +22,9 @@ $(document).ready(function() {
     $(".filters").click(function() {
         produktuakFiltratu(this.id)
     });
+    $(".produktua-ezabatu").click(function() {
+        produktuaEzabatu($(this).data("id"))
+    });
 });
 window.onscroll = function() {
     scrollFunction();
