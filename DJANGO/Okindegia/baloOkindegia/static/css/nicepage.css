@@ -10072,9 +10072,11 @@ section.u-image,
     min-width: 50%;
 }
 
+
+/*
 .u-layout-col>.u-size-30 {
     flex: 30 0 50%;
-}
+}*/
 
 .u-layout-row>.u-size-29 {
     flex: 0 0 48.33333333%;
@@ -14104,7 +14106,6 @@ section.u-image,
 .u-layout-row {
     flex-direction: row;
     flex-wrap: wrap;
-    min-height: 100%;
     max-width: 100%;
 }
 
@@ -40004,8 +40005,12 @@ html {
 }
 
 .u-image-about {
-    min-height: 540px;
+    max-height: 540px;
     background-image: url("../images/panaderia.jpg");
     background-position: 50% 50%;
     border-radius: 5%;
+}
+
+.other-image {
+    max-height: 590px;
 }
