@@ -1,0 +1,62 @@
+{% extends "base.html "%}{% load static %}{% load humanize %}{% block title %} Okindegia {%endblock%} {% block content%}
+
+<head>
+    <link rel="stylesheet " href="{%static 'css/produktuak.css'%} " media="screen">
+</head>
+<section class="section-products">
+    <div class="container">
+        <div class="row justify-content-center text-center">
+            <div class="col-md-8 col-lg-6">
+                <div class="header">
+                    <h2>Gure Produktuak</h2>
+                </div>
+            </div>
+        </div>
+        <div class="row filters-container" id="filters">
+            <ul class="radio-ul">
+                <li>
+                    <input class="filters" type="radio" id="guztiak" name="kategoria" value="Guztiak" checked>
+                    <label for="guztiak">Guztiak</label>
+                </li>
+                {%for kategoria in kategoriak%}
+                <li>
+                    <input class="filters" type="radio" id="{{kategoria}}" name="kategoria" value="{{kategoria}}">
+                    <label for="{{kategoria}}">{{kategoria}}</label>
+                </li>
+                {%endfor%}
+            </ul>
+
+        </div>
+        <div class="row" id="produktu-lista">
+            {%for p in produktuak%}
+            <div class="col-md-6 col-lg-6 col-xl-4">
+                <div class="single-product">
+                    <div class="part-1">
+                        <img id="produktu-irudia-{{p.id}}" src="{{p.irudia}}">
+                        <ul>
+                            <li><a href="#0" id="{{p.id}}" class="saskira-gehitu"><i class="icon fa fa-shopping-cart"></i></a></li>
+                            <li><a href="#0" data-toggle="modal" data-target="#produktu{{p.id}}"><i class="icon fa fa-expand"></i></a></li>
+                        </ul>
+                    </div>
+                    <div class="modal fade bd-example-modal-lg" id="produktu{{p.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <img src="{{p.irudia}}">
+                                <div class="modal-body">
+                                    <h3 class="product-title">{{p.izena}}</h3>
+                                    <h4 class="product-price">{{p.prezioa|floatformat:2}}€</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="part-2">
+                        <h3 id="produktu-izena-{{p.id}}" class="product-title">{{p.izena}}</h3>
+                        <h4 id="produktu-prezioa-{{p.id}}" class="product-price">{{p.prezioa|floatformat:2}}</h4><span class="product-price">€</span>
+                    </div>
+                </div>
+            </div>
+            {%endfor%}
+        </div>
+    </div>
+</section>
+{%endblock%}

@@ -1,0 +1,23 @@
+<html>
+
+<head>
+    <title>
+        {% block title %} {%endblock%}
+    </title>
+</head>
+
+<body>
+    <header>
+        {%include "superior/barra.html"%}
+    </header>
+
+    <h1>Balo Okindegia</h1>
+
+    {% block content%} {%endblock%}
+
+    <footer>
+        <p>Eskerrik asko zure bisitagatik</p>
+    </footer>
+</body>
+
+</html>
