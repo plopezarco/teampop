@@ -70,7 +70,7 @@ function saskiaIkusi() {
     });
 }
 
-function produktuakGehituTaulara(taula) {
+function produktuakGehituTaulara() {
     var produktuTaula = document.getElementById('saskia-lista-tbody')
     produktuTaula.innerHTML = ""
     produktuLista = localStorageIrakurri()
@@ -80,24 +80,13 @@ function produktuakGehituTaulara(taula) {
 		<img src="${element.irudia}" width=100>
 	</td>
 	<td>${element.izena}</td>
-	<td>${element.prezioa}</td>
+	<td>${element.prezioa}€</td>
 	<td>${element.kopurua}</td>
 	<td>
 		<a href="#0" class="produktua-ezabatu" data-id="${element.id}"><i class="icon fa fa-times-circle"></i></a>
 	</td>`
         produktuTaula.appendChild(row)
     });
-}
-
-function produktuaAldatu(id, kopurua) {
-    produktuLista = localStorageIrakurri()
-    produktuLista.forEach(function(element, index) {
-        if (element.id == id) {
-            element.kopurua = kopurua
-        }
-    });
-    localStorage.setItem('produktuak', JSON.stringify(produktuLista))
-    saskiaIkusi()
 }
 
 function getCookie(name) {

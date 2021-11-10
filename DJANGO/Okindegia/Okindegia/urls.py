@@ -25,6 +25,7 @@ urlpatterns = [
     path('contact/', views.contact),
     path('about/', views.about),
     path('user_login/', views.user_login),
-    path('user_logout', views.user_logout),
+    path('register/', views.register),
+    path('user_logout/', views.user_logout),
     path('erosi/', views.erosi)
 ]

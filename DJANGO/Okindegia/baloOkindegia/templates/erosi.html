@@ -1,25 +1,36 @@
 {% extends "base.html "%}{% load static %} {% block title %} Zure Erosketa {%endblock%} {% block content%}
 <link rel="stylesheet " href="{%static 'css/erosi.css'%} " media="screen">
-< <div class="container">
-    <div class="card shopping-cart">
-        <div class="card-body" id="erosi-lista">
-        </div>
-        <div class="card-footer">
-            <div class="coupon col-md-5 col-sm-5 no-padding-left pull-left">
-                <div class="row">
-                    <button href="" class="jerosten">Continue shopping</button>
-                </div>
-            </div>
-            <div class="pull-right" style="margin: 10px">
-                <a href="" class="btn btn-success pull-right">Checkout</a>
-                <div class="pull-right" style="margin: 5px">
-                    Total price: <b>50.00€</b>
+<link rel="stylesheet " href="{%static 'css/produktuak.css'%} " media="screen">
+<section class="section-products">
+    <div class="container">
+        <div class="row justify-content-center text-center">
+            <div class="col-md-8 col-lg-6">
+                <div class="header">
+                    <h2>Zure Saskia</h2>
                 </div>
             </div>
         </div>
-    </div>
-    </div>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="{%static 'js/erosi.js'%}"></script>
+        <div class="card shopping-cart">
+            <div class="card-body" id="erosi-lista">
+            </div>
+            <div class="card-footer">
+                <div class="coupon col-md-5 col-sm-5 no-padding-left pull-left">
+                    <div class="row">
 
-    {%endblock%}
+                        <!--<button href="" class="jerosten">Erosten jarraitu</button>-->
+                    </div>
+                </div>
+                <div class="" style="margin: 5px">
+                    Guztira: <b id="prezio-totala"></b>
+                </div>
+                <div class="pull-right" style="margin: 10px">
+                    <a href="#0" class="btn btn-success pull-right" id="{% if user.is_authenticated %}erosi-logged{%else%}erosi-unlogged{%endif%}">Checkout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="{%static 'js/erosi.js'%}"></script>
+
+{%endblock%}

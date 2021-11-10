@@ -34,14 +34,12 @@
                     </li>
                     <li class="u-nav-item">
                         <a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="/contact" style="padding: 10px 20px;">Kontaktua</a>
-                    </li>
-                    {% if user.is_superuser%}
-                    <li class="u-nav-item">
-                        <a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" id="banatzaile-btn" style="cursor: pointer;" style="padding: 10px 20px;">Banatzailea</a>
-                    </li>
-                    {%endif%} {% if user.is_authenticated %}
+                    </li> {% if user.is_authenticated %}
                     <li class="u-nav-item">
                         <a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="/user_logout" id="logout-btn" style="cursor: pointer;" style="padding: 10px 20px;">Logout</a>
+                    </li>
+                    <li class="u-nav-item">
+                        <p style="padding: 10px 10px;"><b>Ongi etorri, {{user.username}}</b></a>
                     </li>
                     {% else %}
                     <li class="u-nav-item">
@@ -68,8 +66,8 @@
                                 <tfoot>
                                     <tr>
                                         <td colspan="5">
-                                            <a href="#" id="saskia-hustu" class="btn btn-primary btn-block">Saskia Hustu</a>
-                                            <a href="/erosi" id="erosketa-egin" class="btn btn-danger btn-block">Erosi</a>
+                                            <a href="/erosi" id="erosketa-egin" class="btn btn-primary btn-block">Erosi</a>
+                                            <a href="#" id="saskia-hustu" class="btn btn-danger btn-block">Saskia Hustu</a>
                                         </td>
                                     </tr>
                                 </tfoot>

@@ -6,7 +6,7 @@
             <input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Sartu</label>
             <input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab">Erregistratu</label>
             <div class="login-form">
-                <form action="/user_login/" method="POST">
+                <form method="POST" name="login-form" id="login-form">
                     {% csrf_token %}
                     <div class="sign-in-htm">
                         <div class="group">
@@ -22,32 +22,36 @@
                             <input type="submit" class="button" value="Sartu">
                         </div>
                         <div class="foot-lnk">
+                            <p class="foot-lnk" id="login-error" style="color:#F22; display: none">Erabiltzaile edo Pasahitza okerrak</p>
                             <a href="#forgot" class="foot-lnk">Pasahitza ahaztu duzu?</a>
                         </div>
                     </div>
                 </form>
                 <div class="sign-up-htm">
-                    <form method="post">
+                    <form method="POST" name="register-form" id="register-form">
                         {% csrf_token %}
                         <div class="group">
+                            <label for="email" class="label">Email</label>
+                            <input id="email" name="email" type="email" class="input" required>
+                        </div>
+                        <div class="group">
                             <label for="erabiltzailea-register" class="label">Erabiltzailea</label>
-                            <input id="erabiltzailea-register" type="text" class="input">
+                            <input id="erabiltzailea-register" name="erabiltzailea-register" type="text" class="input" required>
                         </div>
                         <div class="group">
                             <label for="pasahitza-register" class="label">Pasahitza</label>
-                            <input id="pasahitza-register" type="password" class="input" data-type="password">
+                            <input id="pasahitza-register" name="pasahitza-register" type="password" class="input" data-type="password" required>
                         </div>
                         <div class="group">
                             <label for="pasahitza2" class="label">Pasahitza Errepikatu</label>
-                            <input id="pasahitza2" type="password" class="input" data-type="password">
-                        </div>
-                        <div class="group">
-                            <label for="email" class="label">Email</label>
-                            <input id="email" type="email" class="input">
+                            <input id="pasahitza-register-2" name="pasahitza-register-2" type="password" class="input" data-type="password" required>
                         </div>
                         <br>
                         <div class="group">
                             <input type="submit" class="button" value="Erregistratu">
+                        </div>
+                        <div class="foot-lnk">
+                            <p class="foot-lnk" id="register-error" style="color:#F22; display: none">Erabiltzaile edo Email-a dagoeneko erabilita</p>
                         </div>
                     </form>
                 </div>

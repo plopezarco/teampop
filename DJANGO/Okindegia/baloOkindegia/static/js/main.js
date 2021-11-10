@@ -25,6 +25,20 @@ $(document).ready(function() {
     $(".produktua-ezabatu").click(function() {
         produktuaEzabatu($(this).data("id"))
     });
+    $("#erosi-unlogged").click(function() {
+        $("#modal-login").show()
+    });
+    $("#login-form").submit(function(e) {
+        e.preventDefault()
+        erabiltzailea = document.forms["login-form"]["erabiltzailea-login"].value
+        pasahitza = document.forms["login-form"]["pasahitza-login"].value
+        login(erabiltzailea, pasahitza)
+    });
+    $("#register-form").submit(function(e) {
+        e.preventDefault()
+        register(document.forms["register-form"])
+    });
+
 });
 window.onscroll = function() {
     scrollFunction();
@@ -85,4 +99,44 @@ function produktuakErakutsi(response) {
         </div>`
         document.getElementById("produktu-lista").appendChild(div)
     });
+}
+
+function login(erabiltzailea, pasahitza) {
+    $.ajax({
+        type: 'POST',
+        url: "/user_login/",
+        data: { csrfmiddlewaretoken: csrftoken, erabiltzailea: erabiltzailea, pasahitza: pasahitza },
+        success: function(response) {
+            location.reload()
+        },
+        error: function(response) {
+            document.getElementById("login-error").style.display = "block"
+        }
+    })
+}
+
+function register(form) {
+    email = form["email"].value
+    erab = form["erabiltzailea-register"].value
+    pass1 = form["pasahitza-register"].value
+    pass2 = form["pasahitza-register-2"].value
+    if (pass1 === pass2) {
+        $.ajax({
+            type: 'POST',
+            url: "/register/",
+            data: { csrfmiddlewaretoken: csrftoken, email: email, erabiltzailea: erab, pasahitza: pass1 },
+            success: function(response) {
+                location.reload()
+            },
+            error: function(response) {
+                document.getElementById("register-error").style.display = "block"
+                document.getElementById("register-error").innerHTML = "Errore ezezagun bat gertatu da"
+                if (response.status == 409)
+                    document.getElementById("register-error").innerHTML = "Emaila edo erabiltzailea dagoeneko erabilita"
+            }
+        })
+    } else {
+        document.getElementById("register-error").style.display = "block"
+        document.getElementById("register-error").innerHTML = "Pasahitza berdina izan behar da"
+    }
 }

@@ -14,26 +14,27 @@ function produktuakGehituListara() {
     var produktuTaula = document.getElementById('erosi-lista')
     produktuTaula.innerHTML = ""
     produktuLista = localStorageIrakurri()
+    var tot = 0
     produktuLista.forEach(element => {
         const div = document.createElement('div')
         div.classList = "row"
         div.innerHTML = `<div class="col-12 col-sm-12 col-md-2 text-center">
-        <img class="img-responsive" src="${element.irudia}" alt="prewiew" width="120">
+        <img class="img-responsive" src="${element.irudia}" alt="prewiew" width="100%">
     </div>
     <div class="col-12 text-sm-center col-sm-12 text-md-left col-md-6">
         <h4 class="product-name"><strong>${element.izena}</strong></h4>
         <h4>
-            <small>Deskripzioa</small>
+        <small>${element.prezioa}€</small>
         </h4>
     </div>
     <div class="col-12 col-sm-12 text-sm-center col-md-4 text-md-right row">
         <div class="col-3 col-sm-3 col-md-6 text-md-right" style="padding-top: 5px">
-            <h6><strong>${element.prezioa} <span class="text-muted"></span></strong></h6>
+            <h6><strong>${(element.prezioa * element.kopurua).toFixed(2)}<span class="text-muted">€</span></strong></h6>
         </div>
         <div class="col-4 col-sm-4 col-md-4">
             <div class="quantity">
                 <input type="button" value="+" class="plus" id="plus-${element.id}">
-                <input type="number" value="${element.kopurua}" title="Kopurua" class="qty" id="kopurua-${element.id}" size="4">
+                <input type="number" value="${element.kopurua}" title="Kopurua" class="qty" id="kopurua-${element.id}" size="4" readonly>
                 <input type="button" value="-" class="minus" id="minus-${element.id}">
             </div>
         </div>
@@ -45,7 +46,9 @@ function produktuakGehituListara() {
     </div>`
         produktuTaula.appendChild(div)
         produktuTaula.appendChild(document.createElement('hr'))
+        tot += (element.prezioa * element.kopurua)
     });
+    document.getElementById('prezio-totala').innerHTML = tot.toFixed(2) + "€"
 }
 
 function kantitateaGehitu(id) {
@@ -59,4 +62,15 @@ function kantitateaKendu(idProd) {
     if (document.getElementById("kopurua-" + id).value > 1)
         document.getElementById("kopurua-" + id).value--;
     produktuaAldatu(id, document.getElementById("kopurua-" + id).value)
+}
+
+function produktuaAldatu(id, kopurua) {
+    produktuLista = localStorageIrakurri()
+    produktuLista.forEach(function(element, index) {
+        if (element.id == id) {
+            element.kopurua = kopurua
+        }
+    });
+    localStorage.setItem('produktuak', JSON.stringify(produktuLista))
+    saskiaIkusi()
 }
