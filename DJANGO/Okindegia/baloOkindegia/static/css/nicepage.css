@@ -40014,3 +40014,50 @@ html {
 .other-image {
     max-height: 590px;
 }
+
+.table-scroll {
+    overflow-y: scroll;
+    height: 500px;
+}
+
+.table-scroll th,
+.table-scroll td {
+    vertical-align: top;
+}
+
+.table-scroll thead th {
+    position: -webkit-sticky;
+    position: sticky;
+    background-color: white;
+    top: -10;
+}
+
+
+/* safari and ios need the tfoot itself to be position:sticky also */
+
+.table-scroll tfoot,
+.table-scroll tfoot th,
+.table-scroll tfoot td {
+    background-color: white;
+    position: -webkit-sticky;
+    position: sticky;
+    bottom: -10;
+    z-index: 4;
+}
+
+th:first-child {
+    position: -webkit-sticky;
+    position: sticky;
+    left: 0;
+    z-index: 2;
+}
+
+thead th:first-child,
+tfoot th:first-child {
+    z-index: 5;
+}
+
+#saskia {
+    overflow-y: scroll;
+    max-height: 500px;
+}

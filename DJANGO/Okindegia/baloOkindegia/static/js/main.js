@@ -8,9 +8,6 @@ $(document).ready(function() {
     $("#saskia-hustu").click(function() {
         localStorageBorratu()
     });
-    $("#erosketa-egin").click(function() {
-        erosketa_egin()
-    });
     $("#modal-login").on('click', function(e) {
         if (!(($(e.target).closest("#modal-content").length > 0))) {
             $("#modal-login").hide();
@@ -25,9 +22,6 @@ $(document).ready(function() {
     $(".produktua-ezabatu").click(function() {
         produktuaEzabatu($(this).data("id"))
     });
-    $("#erosi-unlogged").click(function() {
-        $("#modal-login").show()
-    });
     $("#login-form").submit(function(e) {
         e.preventDefault()
         erabiltzailea = document.forms["login-form"]["erabiltzailea-login"].value
@@ -38,7 +32,11 @@ $(document).ready(function() {
         e.preventDefault()
         register(document.forms["register-form"])
     });
-
+    $("#mezua-form").submit(function(e) {
+        e.preventDefault()
+        mezuaBidali(document.forms["mezua-form"])
+        document.forms["mezua-form"].reset()
+    });
 });
 window.onscroll = function() {
     scrollFunction();
@@ -110,7 +108,9 @@ function login(erabiltzailea, pasahitza) {
             location.reload()
         },
         error: function(response) {
-            document.getElementById("login-error").style.display = "block"
+            Swal.fire('Kontuz!',
+                'Erabiltzaile edo pasahitza okerrak',
+                'error')
         }
     })
 }
@@ -129,14 +129,38 @@ function register(form) {
                 location.reload()
             },
             error: function(response) {
-                document.getElementById("register-error").style.display = "block"
-                document.getElementById("register-error").innerHTML = "Errore ezezagun bat gertatu da"
                 if (response.status == 409)
-                    document.getElementById("register-error").innerHTML = "Emaila edo erabiltzailea dagoeneko erabilita"
+                    Swal.fire('Kontuz!',
+                        'Emaila edo erabiltzailea dagoeneko erabilita dago',
+                        'warning')
+                else
+                    Swal.fire('Errorea!',
+                        'Errore ezezagun bat gertatu da',
+                        'error')
             }
         })
     } else {
-        document.getElementById("register-error").style.display = "block"
-        document.getElementById("register-error").innerHTML = "Pasahitza berdina izan behar da"
+        Swal.fire('Kontuz!', 'Pasahitza biak berdinak izan behar dira', 'warning')
     }
+}
+
+function mezuaBidali(form) {
+    izena = form["izena"].value
+    email = form["email"].value
+    mezua = form["mezua"].value
+    $.ajax({
+        type: 'POST',
+        url: "/mezuagorde/",
+        data: { csrfmiddlewaretoken: csrftoken, izena: izena, email: email, mezua: mezua },
+        success: function(response) {
+            Swal.fire('Ederto!',
+                'Zure mezua gorde da, eskerrik asko!',
+                'success')
+        },
+        error: function(response) {
+            Swal.fire('Errorea!',
+                'Errore ezezagun bat gertatu da',
+                'error')
+        }
+    })
 }

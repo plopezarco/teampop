@@ -25,7 +25,12 @@ urlpatterns = [
     path('contact/', views.contact),
     path('about/', views.about),
     path('user_login/', views.user_login),
+    path('check_login/', views.check_login),
     path('register/', views.register),
     path('user_logout/', views.user_logout),
-    path('erosi/', views.erosi)
+    path('erosi/', views.erosi),
+    path('mezuagorde/', views.mezuaGorde),
+    path('mezuak/', views.mezua),
+    path('ordaindu/', views.ordaindu),
+    path('profila/', views.profila)
 ]

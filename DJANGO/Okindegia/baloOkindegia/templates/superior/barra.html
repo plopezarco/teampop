@@ -34,12 +34,16 @@
                     </li>
                     <li class="u-nav-item">
                         <a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="/contact" style="padding: 10px 20px;">Kontaktua</a>
-                    </li> {% if user.is_authenticated %}
+                    </li> {% if user.is_authenticated %} {% if user.is_superuser %}
                     <li class="u-nav-item">
-                        <a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="/user_logout" id="logout-btn" style="cursor: pointer;" style="padding: 10px 20px;">Logout</a>
+                        <a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="/mezuak" style="padding: 10px 20px;">Mezuak</a>
                     </li>
+                    {%endif%}
                     <li class="u-nav-item">
                         <p style="padding: 10px 10px;"><b>Ongi etorri, {{user.username}}</b></a>
+                    </li>
+                    <li class="u-nav-item">
+                        <a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="/user_logout" id="logout-btn" style="cursor: pointer;" style="padding: 10px 20px;">Logout</a>
                     </li>
                     {% else %}
                     <li class="u-nav-item">
@@ -52,7 +56,7 @@
                         </a>
 
                         <div id="saskia" class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarCollapse">
-                            <table id="saskia-lista" class="table">
+                            <table id="saskia-lista" class="table table-scroll">
                                 <thead>
                                     <tr>
                                         <th>Irudia</th>

@@ -47,7 +47,7 @@ function localStorageIrakurri() {
 function localStorageBorratu() {
     produktuLista = []
     localStorage.clear()
-    produktuakGehituTaulara()
+    saskiaIkusi()
 }
 
 function saskiaIkusi() {
@@ -74,9 +74,10 @@ function produktuakGehituTaulara() {
     var produktuTaula = document.getElementById('saskia-lista-tbody')
     produktuTaula.innerHTML = ""
     produktuLista = localStorageIrakurri()
-    produktuLista.forEach(element => {
-        const row = document.createElement('tr')
-        row.innerHTML = `<td>
+    if (produktuLista.length > 0) {
+        produktuLista.forEach(element => {
+            const row = document.createElement('tr')
+            row.innerHTML = `<td>
 		<img src="${element.irudia}" width=100>
 	</td>
 	<td>${element.izena}</td>
@@ -85,8 +86,13 @@ function produktuakGehituTaulara() {
 	<td>
 		<a href="#0" class="produktua-ezabatu" data-id="${element.id}"><i class="icon fa fa-times-circle"></i></a>
 	</td>`
+            produktuTaula.appendChild(row)
+        });
+    } else {
+        const row = document.createElement('tr')
+        row.innerHTML = `<td style="text-align: center" colspan="4">Zure saskia hutsik dago</td>`
         produktuTaula.appendChild(row)
-    });
+    }
 }
 
 function getCookie(name) {

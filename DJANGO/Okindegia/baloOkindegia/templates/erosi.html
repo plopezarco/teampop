@@ -16,19 +16,23 @@
             <div class="card-footer">
                 <div class="coupon col-md-5 col-sm-5 no-padding-left pull-left">
                     <div class="row">
-
-                        <!--<button href="" class="jerosten">Erosten jarraitu</button>-->
                     </div>
                 </div>
-                <div class="" style="margin: 5px">
+                <div class="pull-left">
+                    <label>Entrega data (gutxienez, ordu bat): </label>
+                    <input type="datetime-local" id="data-ordua" name="data-ordua">
+                </div>
+                <div class="pull-right" style="margin: 0px 10px">
                     Guztira: <b id="prezio-totala"></b>
                 </div>
+                <br>
                 <div class="pull-right" style="margin: 10px">
-                    <a href="#0" class="btn btn-success pull-right" id="{% if user.is_authenticated %}erosi-logged{%else%}erosi-unlogged{%endif%}">Checkout</a>
+                    <a href="#0" class="btn btn-success pull-right" id="erosi-btn">Checkout</a>
                 </div>
             </div>
         </div>
     </div>
+    <div id="ordaindu"></div>
 </section>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="{%static 'js/erosi.js'%}"></script>
