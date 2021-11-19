@@ -13,7 +13,7 @@ $(document).ready(function() {
             $("#modal-login").hide();
         }
     });
-    $("#login-btn").click(function() {
+    $("#login-btn, #login-btn2").click(function() {
         $("#modal-login").show();
     });
     $(".filters").click(function() {

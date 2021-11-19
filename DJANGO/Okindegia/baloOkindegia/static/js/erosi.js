@@ -10,9 +10,26 @@ $(document).ready(function() {
     });
     $("#data-ordua").change(function() {
         dataKonprobatu($(this).val())
+    });
+    $("#pisua-input, #posta-kodea-input").on('input', function() {
+        var val = $(this).val();
+        val = val.replace(/\D/g, '');
+        $(this).val(val);
+    });
+    $("#letra-input, #herria-input").on('input', function() {
+        var val = $(this).val();
+        val = val.replace(/\d/g, '');
+        $(this).val(val);
+    });
+    $("#helbidea-form").on('submit', function(e) {
+        e.preventDefault()
+        helbideaGorde()
     })
+    $("#helbidea-final").hide()
     dataSartu()
+    helbideaKonprobatu()
 });
+
 window.onload = function() {
     produktuakGehituListara()
 };
@@ -113,10 +130,11 @@ function erosi() {
         btn.removeAttribute('data-target')
         btn.removeAttribute('data-toggle')
         if (dataKonprobatu(document.getElementById("data-ordua").value)) {
-            btn.setAttribute('data-target', "#staticBackdrop")
-            btn.setAttribute('data-toggle', "modal")
-            if (div.innerHTML.trim() === '') {
-                div.innerHTML = `<div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            if (document.getElementById("helbidea-final").value) {
+                btn.setAttribute('data-target', "#staticBackdrop")
+                btn.setAttribute('data-toggle', "modal")
+                if (div.innerHTML.trim() === '') {
+                    div.innerHTML = `<div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-body">
@@ -133,20 +151,25 @@ function erosi() {
                                             <h5>Kreditu Txartela</h5>
                                         </div>
                                         <div class="form mt-3">
-                                            <div class="inputbox"> <input type="text" name="name" autocomplete="off" maxlength="50" class="form-control" required="required"> <span>Izen Abizenak</span> </div>
-                                            <div class="inputbox"> <input type="text" id="txartela-input" name="name" maxlength="19" autocomplete="off" class="form-control" required="required"> <span>Txartel Zenbakia</span> <i class="fa fa-eye"></i> </div>
+                                        <form id="pay">
+
+                                            <div class="inputbox"> <input type="text" id="izen-abizen-input" name="name" autocomplete="off" maxlength="50" class="form-control" required> <span>Izen Abizenak</span> </div>
+                                            <div class="inputbox"> <input type="text" id="txartela-input" name="name" maxlength="19" autocomplete="off" class="form-control" required> <span>Txartel Zenbakia</span> </div>
                                             <div class="d-flex flex-row">
-                                                <div class="inputbox"> <input type="text" id="iraungitze-data-input" name="name" maxlength="5" autocomplete="off" class="form-control" required="required"> <span>Iraungitze Data</span> </div>
-                                                <div class="inputbox"> <input type="text" name="name" maxlength="3" autocomplete="off" class="form-control" required="required"> <span>CVV</span> </div>
+                                                <div class="inputbox"> <input type="text" id="iraungitze-data-input" name="name" maxlength="5" autocomplete="off" class="form-control" required> <span>Iraungitze Data</span> </div>
+                                                <div class="inputbox"> <input type="password" id="cvv-input" name="name" maxlength="3" autocomplete="off" class="form-control" required> <span>CVV</span> </div>
                                             </div>
-                                            <div class="px-5 pay"> <button class="btn btn-success btn-block">Ordaindu</button> </div>
+                                            <div class="px-5"> <input type="submit" id="pay-btn" class="btn btn-success btn-block" value="Ordaindu"> </div>
+                                        </form>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="tab-pane fade" id="paypal" role="tabpanel" aria-labelledby="paypal-tab">
                                     <div class="px-5 mt-5">
-                                        <div class="inputbox"> <input type="text" name="name" class="form-control" required="required"> <span>Paypal Email Helbidea</span> </div>
-                                        <div class="pay px-5"> <button class="btn btn-primary btn-block">Ordaindu</button> </div>
+                                    <form id="pay2">
+                                        <div class="inputbox"> <input type="email" id="paypal-input" name="name" class="form-control" autocomplete="off" required> <span>Paypal Email Helbidea</span> </div>
+                                        <div class="pay px-5"> <input type="submit" id="pay-btn" class="btn btn-success btn-block" value="Ordaindu"> </div>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
@@ -155,33 +178,50 @@ function erosi() {
                 </div>
             </div>
         </div>`
-                $('.pay').click(function(e) {
-                    ordaindu()
-                    $(this).find(">:first-child").attr('disabled', 'disabled')
+                    $('#pay, #pay2').on('submit', function(e) {
+                        e.preventDefault()
+                        ordaindu()
+                        $("#pay-btn").attr('disabled', 'disabled')
+                    });
+                    btn.click();
+                }
+                $('#txartela-input').on('input', function(e) {
+                    var val = $(this).val();
+                    var newval = '';
+                    val = val.replace(/\D/g, '');
+                    val = val.replace(/\s/g, '');
+                    for (var i = 0; i < val.length; i++) {
+                        if (i % 4 == 0 && i > 0) newval = newval.concat(' ');
+                        newval = newval.concat(val[i]);
+                    }
+                    $(this).val(newval);
                 });
-                btn.click();
+                $('#iraungitze-data-input').on('input', function(e) {
+                    var val = $(this).val();
+                    var newval = '';
+                    val = val.replace(/\W/g, '');
+                    for (var i = 0; i < val.length; i++) {
+                        if (i % 2 == 0 && i > 0) newval = newval.concat('/');
+                        newval = newval.concat(val[i]);
+                    }
+                    $(this).val(newval);
+                });
+                $("#izen-abizen-input").on('input', function() {
+                    var val = $(this).val();
+                    val = val.replace(/\d/g, '');
+                    $(this).val(val);
+                });
+                $("#cvv-input").on('input', function() {
+                    var val = $(this).val();
+                    val = val.replace(/\D/g, '');
+                    $(this).val(val);
+                });
+
+            } else {
+                Swal.fire('Kontuz!',
+                    'Ez duzu helbidea jarri',
+                    'warning')
             }
-            $('#txartela-input').on('input', function(e) {
-                var val = $(this).val();
-                var newval = '';
-                val = val.replace(/\D/g, '');
-                val = val.replace(/\s/g, '');
-                for (var i = 0; i < val.length; i++) {
-                    if (i % 4 == 0 && i > 0) newval = newval.concat(' ');
-                    newval = newval.concat(val[i]);
-                }
-                $(this).val(newval);
-            });
-            $('#iraungitze-data-input').on('input', function(e) {
-                var val = $(this).val();
-                var newval = '';
-                val = val.replace(/\W/g, '');
-                for (var i = 0; i < val.length; i++) {
-                    if (i % 2 == 0 && i > 0) newval = newval.concat('/');
-                    newval = newval.concat(val[i]);
-                }
-                $(this).val(newval);
-            });
         }
     } else {
         Swal.fire('Kontuz!',
@@ -202,6 +242,39 @@ function dataSartu() {
     data_ordua.setAttribute("max", max.toISOString().slice(0, 16))
 }
 
+function helbideaGorde() {
+    helbidea = $("#helbidea-input").val()
+    pisua = $("#pisua-input").val()
+    letra = $("#letra-input").val()
+    postakodea = $("#posta-kodea-input").val()
+    herria = $("#herria-input").val()
+    var helbideOsoa = helbidea + ", " + pisua + "." + letra + ", " + postakodea + " " + herria
+    $("#helbidea-final").val(helbideOsoa);
+    $("#helbidea-final").show()
+    document.getElementById("btn-icon").classList.remove('fa-plus');
+    document.getElementById("btn-icon").classList.add('fa-edit');
+    jQuery.noConflict();
+    $("#helbidea-modal").modal('hide');
+    helbideaObj = { helbidea: helbidea, pisua: pisua, letra: letra, postakodea: postakodea, herria: herria }
+    sessionStorage.setItem('helbidea', JSON.stringify(helbideaObj));
+}
+
+function helbideaKonprobatu() {
+    var helbideaObj = JSON.parse(sessionStorage.getItem('helbidea'))
+    if (helbideaObj) {
+        $("#helbidea-final").show()
+        $("#helbidea-input").val(helbideaObj.helbidea)
+        $("#pisua-input").val(helbideaObj.pisua)
+        $("#letra-input").val(helbideaObj.letra)
+        $("#posta-kodea-input").val(helbideaObj.postakodea)
+        $("#herria-input").val(helbideaObj["herria"])
+        var helbideOsoa = helbideaObj.helbidea + ", " + helbideaObj.pisua + "." + helbideaObj.letra + ", " + helbideaObj.postakodea + " " + helbideaObj.herria
+        $("#helbidea-final").val(helbideOsoa);
+        document.getElementById("btn-icon").classList.remove('fa-plus');
+        document.getElementById("btn-icon").classList.add('fa-edit');
+    }
+}
+
 function dataKonprobatu(data_var) {
     var data = new Date(data_var)
     var orain = new Date()
@@ -217,17 +290,20 @@ function dataKonprobatu(data_var) {
 }
 
 function ordaindu() {
+    data = new Date($('#data-ordua').val())
+    helbidea = $("#helbidea-final").val()
     $.ajax({
         type: 'POST',
         url: "/ordaindu/",
-        data: { csrfmiddlewaretoken: csrftoken, produktuak: JSON.stringify(localStorageIrakurri()), totala: tot },
-        success: function(response) {
+        data: { csrfmiddlewaretoken: csrftoken, produktuak: JSON.stringify(localStorageIrakurri()), totala: tot, entrega_data: data.toUTCString(), helbidea: helbidea },
+        success: function() {
             Swal.fire({ title: 'Eskerrik asko', text: 'Zure erosketa ondo gauzatu da. Eskerrik asko', icon: 'success', confirmButtonText: 'Ok' }).then((result) => {
                 location.replace("/index")
             })
             localStorageBorratu()
+            sessionStorage.clear()
         },
-        error: function(response) {
+        error: function() {
             Swal.fire('Errorea', 'Errore ezezagun bat gertatu da', 'error')
         }
     })

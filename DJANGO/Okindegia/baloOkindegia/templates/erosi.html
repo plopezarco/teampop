@@ -1,6 +1,6 @@
-{% extends "base.html "%}{% load static %} {% block title %} Zure Erosketa {%endblock%} {% block content%}
-<link rel="stylesheet " href="{%static 'css/erosi.css'%} " media="screen">
-<link rel="stylesheet " href="{%static 'css/produktuak.css'%} " media="screen">
+{% extends "base.html"%}{% load static %} {% block title %} Zure Erosketa {%endblock%} {% block content%}
+<link rel="stylesheet" href="{%static 'css/erosi.css'%}" media="screen">
+<link rel="stylesheet" href="{%static 'css/produktuak.css'%}" media="screen">
 <section class="section-products">
     <div class="container">
         <div class="row justify-content-center text-center">
@@ -11,30 +11,73 @@
             </div>
         </div>
         <div class="card shopping-cart">
-            <div class="card-body" id="erosi-lista">
-            </div>
+            <div class="card-body" id="erosi-lista"></div>
             <div class="card-footer">
                 <div class="coupon col-md-5 col-sm-5 no-padding-left pull-left">
-                    <div class="row">
-                    </div>
+                    <div class="row"></div>
                 </div>
                 <div class="pull-left">
-                    <label>Entrega data (gutxienez, ordu bat): </label>
+                    <label>Entrega data (gutxienez, ordu bat):</label>
                     <input type="datetime-local" id="data-ordua" name="data-ordua">
                 </div>
+                <br>
                 <div class="pull-right" style="margin: 0px 10px">
-                    Guztira: <b id="prezio-totala"></b>
+                    Guztira:
+                    <b id="prezio-totala"></b>
                 </div>
                 <br>
+                <div class="pull-left" style="margin: 0px 10px">
+                    <label>Helbidea:</label>
+                    <input type="text" id="helbidea-final" size="50" disabled>
+                    <a href="#0" class="btn btn-info" id="helbidea-btn" data-toggle="modal" data-target="#helbidea-modal" style="margin-left: 10px;">
+                        <i id="btn-icon" class="fa fa-plus"></i>
+                    </a>
+                </div>
                 <div class="pull-right" style="margin: 10px">
-                    <a href="#0" class="btn btn-success pull-right" id="erosi-btn">Checkout</a>
+                    <a href="#0" class="btn btn-success" id="erosi-btn">Checkout</a>
+                </div>
+                <div class="modal fade" id="helbidea-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Helbidea Gehitu</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <form id="helbidea-form">
+                                <div class="modal-body">
+                                    <div class="form-group">
+                                        <label for="helbidea" class="col-form-label">Helbidea:</label>
+                                        <input type="text" maxlength="50" class="form-control" id="helbidea-input" autocomplete="off" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="pisua" class="col-form-label">Pisua:</label>
+                                        <input type="text" maxlength=" 2" class="form-control" id="pisua-input" autocomplete="off" required>
+                                        <label for="letra" class="col-form-label">Letra:</label>
+                                        <input type="text" maxlength="1" class="form-control" id="letra-input" autocomplete="off" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="posta_kodea" class="col-form-label">Posta Kodea:</label>
+                                        <input type="text" maxlength="5" class="form-control" id="posta-kodea-input" autocomplete="off" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="herria" class="col-form-label">Herria:</label>
+                                        <input type="text" maxlength="50" class="form-control" id="herria-input" autocomplete="off" required>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <input type="reset" class="btn btn-secondary" value="Garbitu" />
+                                    <input type="submit" class="btn btn-primary" value="Gorde">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div id="ordaindu"></div>
+        <div id="ordaindu"></div>
 </section>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="{%static 'js/erosi.js'%}"></script>
-
 {%endblock%}

@@ -5,10 +5,13 @@ from django.contrib.auth.models import User
 from django.utils import timezone
 from django.contrib.auth.decorators import login_required,user_passes_test
 import json
-from .models import Bezeroa, Mezua, Produktua, Ticket, Ticket_Lerroa
+from .models import Mezua, Produktua, Ticket, Ticket_Lerroa
 from django.core.mail import EmailMessage
 from django.conf import settings
 from django.template.loader import render_to_string
+from datetime import datetime, timedelta
+from django.utils import timezone
+import pytz
 
 # Create your views here.
 
@@ -41,12 +44,10 @@ def register(request):
         else:
             user = User.objects.create_user(username = newUser["erab"], password = newUser["pass1"], email = newUser["email"], first_name = newUser["izena"], last_name = newUser["abizena"])
             user.save()
-            bezeroa = Bezeroa.objects.create(id_user = user)
-            bezeroa.save()
             login(request,user)
             email = EmailMessage(
             subject = 'Erregistro Berria: ' + user.username,
-            body = render_to_string('email/register.html', {'user' : user, 'bezeroa' : bezeroa}),
+            body = render_to_string('email/register.html', {'user' : user}),
             from_email = settings.DEFAULT_FROM_EMAIL,
             to = ['register@balo.com'],
             )
@@ -72,6 +73,7 @@ def check_login(request):
     else:
         return JsonResponse({}, status=401)
 
+@login_required
 def user_logout(request):
     logout(request)
     return HttpResponseRedirect("/index")
@@ -116,13 +118,16 @@ def mezua(request):
 def ordaindu(request):
     produktuak = request.POST.get('produktuak')
     totala = request.POST.get('totala')
-
+    data = datetime.strptime(request.POST.get('entrega_data'), "%a, %d %b %Y %H:%M:%S %Z")
+    data = timezone.make_aware(data)
+    data += timedelta(hours=1)
+    helbideatxt = request.POST.get('helbidea')
     try:    
-        bezeroa = Bezeroa.objects.filter(id_user = request.user.id).first()
+        print(request.user.id)
+        bezeroa = User.objects.filter(id = request.user.id).first()
         fecha = timezone.now().isoformat()
-        ticket = Ticket.objects.create(data = fecha, totala = totala, id_bezeroa = bezeroa)
+        ticket = Ticket.objects.create(data = fecha, totala = totala, id_bezeroa = bezeroa, entrega_data = data, helbidea = helbideatxt)
         ticket.save()
-
         prodjson = json.loads(produktuak)
         for p in prodjson:
             subtotala = float(p["kopurua"]) * float(p["prezioa"])
@@ -133,11 +138,6 @@ def ordaindu(request):
         try:
             ticket = Ticket.objects.filter(id = ticket.id).first()
             lerroak = Ticket_Lerroa.objects.filter(id_ticket = ticket).select_related('id_produktua').all()
-            for l in lerroak:
-                print(l.subtotala)
-                print(l.kantitatea)
-                print(l.id_produktua.izena)
-                print(l.id_produktua.izena)
             ticket.lerroak = lerroak
 
             email = EmailMessage(
@@ -158,12 +158,11 @@ def ordaindu(request):
 @login_required
 def profila(request):
     user = request.user
-    bezeroa = Bezeroa.objects.filter(id_user = user).first()
-    ticketak = Ticket.objects.filter(id_bezeroa = bezeroa).all().order_by('-data')
+    ticketak = Ticket.objects.filter(id_bezeroa = user).all().order_by('-data')
 
     for t in ticketak:
         lerroak = Ticket_Lerroa.objects.filter(id_ticket = t).select_related('id_produktua')
         t.lerroak = lerroak
 
-    dicc = {'user' : request.user, 'bezeroa' : bezeroa, 'eskaerak' : ticketak}
+    dicc = {'user' : request.user, 'eskaerak' : ticketak}
     return render(request, "profile.html", dicc)

@@ -1,13 +1,9 @@
 from django.db import models
 from django.db.models.base import Model
 from django.contrib.auth.models import User
+import datetime
 import json
 # Create your models here.
-
-class Bezeroa(models.Model):
-    helbidea = models.CharField(max_length=50)
-    irudia = models.TextField()
-    id_user= models.ForeignKey(User, on_delete=models.CASCADE)
 
 class Produktua(models.Model):
     izena = models.CharField(max_length=50)
@@ -16,10 +12,12 @@ class Produktua(models.Model):
     kategoria = models.TextField()
 
 class Ticket(models.Model):
-    id_bezeroa = models.ForeignKey(Bezeroa,
+    id_bezeroa = models.ForeignKey(User,
         on_delete=models.CASCADE)
     data = models.DateTimeField()
+    entrega_data = models.DateTimeField(blank=True, null=True,default=datetime.date.today)
     totala = models.FloatField()
+    helbidea = models.TextField(default=None)
 
 class Ticket_Lerroa(models.Model):
     id_ticket = models.ForeignKey(Ticket, on_delete=models.CASCADE)

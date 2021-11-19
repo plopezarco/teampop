@@ -35,7 +35,8 @@
                                                 <p>Ez daukazu eskaerarik</p>
                                             </div>{%endifequal%}{%for eskaera in eskaerak%}
                                             <div class="carousel-item {% if forloop.first %}active{%endif%}">
-                                                <p>Ticket kodea: {{eskaera.id}} <br>Data eta Ordua: {{eskaera.data|date:"Y/m/d H:i"}} <br>Produktu kopurua: {{eskaera.lerroak|length}} <br>Guztira: {{eskaera.totala|floatformat:-2}}€ </p>
+                                                <p>Ticket kodea: {{eskaera.id}} <br>Data eta Ordua: {{eskaera.data|date:"Y/m/d H:i"}} <br>Entrega data: {{eskaera.entrega_data|date:"Y/m/d H:i"}} <br>Produktu kopurua: {{eskaera.lerroak|length}}
+                                                    <br>Guztira: {{eskaera.totala|floatformat:-2}}€ </p>
                                                 <button type="button" class="btn btn-success launch ticket-ikusi" data-toggle="modal" data-target="#ticket-modal-{{eskaera.id}}">Ikusi</button>
                                                 <div class="modal fade" id="ticket-modal-{{eskaera.id}}" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                                                     <div class="modal-dialog">
@@ -44,6 +45,8 @@
                                                                 <div class="text-right"> <i class="fa fa-close close" data-dismiss="modal"></i> </div>
                                                                 <div class="px-4 py-5">
                                                                     <h5 class="text-uppercase">{{user.first_name}} {{user.last_name}}</h5>
+                                                                    <span style="box-sizing: border-box;">{{eskaera.data|date:"Y/m/d H:i"}}</span><br>
+                                                                    <span style="box-sizing: border-box;">{{eskaera.helbidea}}</span>
                                                                     <h4 class="mt-5 theme-color mb-5">Eskerrik asko zure erosketagaitik</h4> <span class="theme-color">Erosketaren laburpena</span>
                                                                     <div class="mb-3">
                                                                         <hr class="new1">
