@@ -209,3 +209,27 @@ input[type=submit] {
         min-height: 314px;
     }
 }
+
+hr.new1 {
+    border-top: 2px dashed #999;
+    margin: 0.4rem 0
+}
+
+.theme-color {
+    color: #004cb9
+}
+
+.carousel-control-next,
+.carousel-control-prev,
+.carousel-indicators {
+    filter: invert(100%);
+    cursor: pointer;
+}
+
+.carousel-item {
+    padding: 20px 70px 70px;
+}
+
+.carousel-item {
+    background-color: #ededed;
+}

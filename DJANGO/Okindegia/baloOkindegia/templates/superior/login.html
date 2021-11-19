@@ -29,6 +29,14 @@
                 <div class="sign-up-htm">
                     <form method="POST" name="register-form" id="register-form">
                         {% csrf_token %}
+                        <div class="group input-small">
+                            <label for="izena" class="label">Izena</label>
+                            <input id="izena" name="izena" type="izena" class="input" autocomplete="off" required>
+                        </div>
+                        <div class="group input-small">
+                            <label for="abizena" class="label">Abizena</label>
+                            <input id="abizena" name="abizena" type="abizena" class="input" autocomplete="off" required>
+                        </div>
                         <div class="group">
                             <label for="email" class="label">Email</label>
                             <input id="email" name="email" type="email" class="input" autocomplete="off" required>

@@ -22,17 +22,51 @@
                         <div class="u-layout-col ">
                             <div class="u-align-left u-container-style u-layout-cell u-right-cell u-size-60 u-layout-cell-3 ">
                                 <div class="u-container-layout u-container-layout-3">
-                                    <h2 class="u-text u-text-1 ">Nire eskaerak</h2>
-                                    {%for eskaera in eskaerak%}
-                                    <p>Id: {{eskaera.id}} / Data: {{eskaera.data|date:"Y/m/d H:i"}} / Guztira: {{eskaera.totala}} / Produktu kopurua: {{eskaera.lerroak|length}}</p>
-                                    <!--<hr> {%for lerroa in eskaera.lerroak%}
-                                    <p>{{lerroa.id_produktua.izena}} Prezioa: {{lerroa.id_produktua.prezioa}} </p>
-                                    {%endfor%}
-                                    <hr>
-                                    <p>Guztira: {{eskaera.totala}} </p>-->
-                                    <a href="#0" class="btn btn-success ticket-ikusi" data-id={{eskaera.id}}>Ikusi</a>
-                                    <hr> {%endfor%}
-
+                                    <h2 class="u-text u-text-1 u-align-center">Nire eskaerak</h2>
+                                    <div id="demo" class="carousel slide" data-ride="carousel" data-interval="false">
+                                        <ul class="carousel-indicators">
+                                            {%for eskaera in eskaerak%}
+                                            <li data-target="#demo" data-slide-to="{{forloop.counter0}}" {% if forloop.first %}active{%endif%}></li>
+                                            {%endfor%}
+                                        </ul>
+                                        <div class="carousel-inner">
+                                            {%ifequal eskaerak|length 0%}
+                                            <div class="carousel-item active u-align-center">
+                                                <p>Ez daukazu eskaerarik</p>
+                                            </div>{%endifequal%}{%for eskaera in eskaerak%}
+                                            <div class="carousel-item {% if forloop.first %}active{%endif%}">
+                                                <p>Ticket kodea: {{eskaera.id}} <br>Data eta Ordua: {{eskaera.data|date:"Y/m/d H:i"}} <br>Produktu kopurua: {{eskaera.lerroak|length}} <br>Guztira: {{eskaera.totala|floatformat:-2}}€ </p>
+                                                <button type="button" class="btn btn-success launch ticket-ikusi" data-toggle="modal" data-target="#ticket-modal-{{eskaera.id}}">Ikusi</button>
+                                                <div class="modal fade" id="ticket-modal-{{eskaera.id}}" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content">
+                                                            <div class="modal-body">
+                                                                <div class="text-right"> <i class="fa fa-close close" data-dismiss="modal"></i> </div>
+                                                                <div class="px-4 py-5">
+                                                                    <h5 class="text-uppercase">{{user.first_name}} {{user.last_name}}</h5>
+                                                                    <h4 class="mt-5 theme-color mb-5">Eskerrik asko zure erosketagaitik</h4> <span class="theme-color">Erosketaren laburpena</span>
+                                                                    <div class="mb-3">
+                                                                        <hr class="new1">
+                                                                    </div>
+                                                                    {%for lerroa in eskaera.lerroak%}
+                                                                    <div class="d-flex justify-content-between"> <span class="font-weight-bold">{{lerroa.id_produktua.izena}} <small>(Kop.{{lerroa.kantitatea|floatformat}})</small></span><span class="text-muted">{{lerroa.subtotala|floatformat:-2}}€</span>                                                                        </div>
+                                                                    {%endfor%}
+                                                                    <div class="d-flex justify-content-between mt-3"> <span class="font-weight-bold">Guztira</span> <span class="font-weight-bold theme-color">{{eskaera.totala|floatformat:-2}}€</span> </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            {%endfor%}
+                                        </div>
+                                        <a class="carousel-control-prev" data-target="#demo" data-slide="prev">
+                                            <span class="carousel-control-prev-icon"></span>
+                                        </a>
+                                        <a class="carousel-control-next" data-target="#demo" data-slide="next">
+                                            <span class="carousel-control-next-icon"></span>
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -40,5 +74,4 @@
                 </div>
             </div>
         </div>
-    </div>
 </section>{%endblock%}

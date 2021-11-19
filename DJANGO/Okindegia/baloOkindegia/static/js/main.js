@@ -34,6 +34,7 @@ $(document).ready(function() {
     });
     $("#mezua-form").submit(function(e) {
         e.preventDefault()
+        $("#mezua-bidali").attr("disabled", true);
         mezuaBidali(document.forms["mezua-form"])
         document.forms["mezua-form"].reset()
     });
@@ -92,10 +93,13 @@ function produktuakErakutsi(response) {
             </div>
             <div class="part-2">
                 <h3 id="produktu-izena-${p.id}" class="product-title">${p.izena}</h3>
-                <h4 id="produktu-prezioa-${p.id}" class="product-price">${p.prezioa.toFixed(2)}€</h4>
+                <h4 id="produktu-prezioa-${p.id}" class="product-price">${p.prezioa.toFixed(2)}</h4><span class="product-price">€</span>
             </div>
         </div>`
         document.getElementById("produktu-lista").appendChild(div)
+    });
+    $(".saskira-gehitu").click(function() {
+        produktuaGehitu(this.id)
     });
 }
 
@@ -116,15 +120,19 @@ function login(erabiltzailea, pasahitza) {
 }
 
 function register(form) {
-    email = form["email"].value
-    erab = form["erabiltzailea-register"].value
-    pass1 = form["pasahitza-register"].value
-    pass2 = form["pasahitza-register-2"].value
-    if (pass1 === pass2) {
+    var user = {
+        izena: form["izena"].value,
+        abizena: form["abizena"].value,
+        email: form["email"].value,
+        erab: form["erabiltzailea-register"].value,
+        pass1: form["pasahitza-register"].value,
+        pass2: form["pasahitza-register-2"].value
+    }
+    if (user.pass1 === user.pass2) {
         $.ajax({
             type: 'POST',
             url: "/register/",
-            data: { csrfmiddlewaretoken: csrftoken, email: email, erabiltzailea: erab, pasahitza: pass1 },
+            data: { csrfmiddlewaretoken: csrftoken, user: JSON.stringify(user) },
             success: function(response) {
                 location.reload()
             },
@@ -156,6 +164,7 @@ function mezuaBidali(form) {
             Swal.fire('Ederto!',
                 'Zure mezua gorde da, eskerrik asko!',
                 'success')
+            $("#mezua-bidali").attr("disabled", false);
         },
         error: function(response) {
             Swal.fire('Errorea!',

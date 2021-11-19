@@ -6,6 +6,9 @@ from django.utils import timezone
 from django.contrib.auth.decorators import login_required,user_passes_test
 import json
 from .models import Bezeroa, Mezua, Produktua, Ticket, Ticket_Lerroa
+from django.core.mail import EmailMessage
+from django.conf import settings
+from django.template.loader import render_to_string
 
 # Create your views here.
 
@@ -31,17 +34,24 @@ def register(request):
     if request.user.is_authenticated:
         return HttpResponseRedirect('/')
     if request.method == 'POST':
-        email = request.POST.get('email')
-        username = request.POST.get('erabiltzailea')
-        password = request.POST.get('pasahitza')
-        if User.objects.filter(username = username).exists() or User.objects.filter(email=email).exists():
+        userString = request.POST.get('user')
+        newUser = json.loads(userString)
+        if User.objects.filter(username = newUser["erab"]).exists() or User.objects.filter(email=newUser["email"]).exists():
             return JsonResponse({},status=409)
         else:
-            user = User.objects.create_user(username = username, password = password, email = email)
+            user = User.objects.create_user(username = newUser["erab"], password = newUser["pass1"], email = newUser["email"], first_name = newUser["izena"], last_name = newUser["abizena"])
             user.save()
-            bezeroa = Bezeroa.objects.create(id_user = user, email = user.email)
+            bezeroa = Bezeroa.objects.create(id_user = user)
             bezeroa.save()
             login(request,user)
+            email = EmailMessage(
+            subject = 'Erregistro Berria: ' + user.username,
+            body = render_to_string('email/register.html', {'user' : user, 'bezeroa' : bezeroa}),
+            from_email = settings.DEFAULT_FROM_EMAIL,
+            to = ['register@balo.com'],
+            )
+            email.content_subtype = "html"
+            email.send()
             return JsonResponse({},status=200)
     return JsonResponse({},status=400)
 
@@ -85,6 +95,14 @@ def mezuaGorde(request):
     mezua = request.POST.get('mezua')
 
     mezuaObj = Mezua.objects.create(izena = izena, email = email, mezua = mezua)
+    email = EmailMessage(
+            subject = 'Mezu Berria: ' + mezuaObj.izena,
+            body = render_to_string('email/mezua.html', {'mezua' : mezuaObj}),
+            from_email = settings.DEFAULT_FROM_EMAIL,
+            to = ['info@balo.com'],
+            )
+    email.content_subtype = "html"
+    email.send()
     return JsonResponse({'mezua': mezuaObj.toJSON()}, status=200)
 
 @login_required
@@ -111,6 +129,28 @@ def ordaindu(request):
             produktua = Produktua.objects.filter(id = p["id"]).first()
             lerroa = Ticket_Lerroa.objects.create(kantitatea = p["kopurua"], subtotala = subtotala, id_produktua = produktua, id_ticket = ticket)
             lerroa.save()
+
+        try:
+            ticket = Ticket.objects.filter(id = ticket.id).first()
+            lerroak = Ticket_Lerroa.objects.filter(id_ticket = ticket).select_related('id_produktua').all()
+            for l in lerroak:
+                print(l.subtotala)
+                print(l.kantitatea)
+                print(l.id_produktua.izena)
+                print(l.id_produktua.izena)
+            ticket.lerroak = lerroak
+
+            email = EmailMessage(
+            subject = 'Erosketa Berria: Ticket ' + str(ticket.id),
+            body = render_to_string('email/ticket.html', {'user' : request.user, 'bezeroa' : bezeroa, 'ticket' : ticket}),
+            from_email = settings.DEFAULT_FROM_EMAIL,
+            to = ['erosketak@balo.com'],
+            )
+            email.content_subtype = "html"
+            email.send()
+        except Exception as e:
+            print(e)
+
         return JsonResponse({}, status=200)
     except:
         return JsonResponse({}, status=500)
@@ -119,11 +159,10 @@ def ordaindu(request):
 def profila(request):
     user = request.user
     bezeroa = Bezeroa.objects.filter(id_user = user).first()
-    ticketak = Ticket.objects.filter(id_bezeroa = bezeroa).all()
+    ticketak = Ticket.objects.filter(id_bezeroa = bezeroa).all().order_by('-data')
 
     for t in ticketak:
         lerroak = Ticket_Lerroa.objects.filter(id_ticket = t).select_related('id_produktua')
-        print(lerroak.first().id_produktua)
         t.lerroak = lerroak
 
     dicc = {'user' : request.user, 'bezeroa' : bezeroa, 'eskaerak' : ticketak}

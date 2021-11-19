@@ -27,7 +27,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -130,7 +129,14 @@ STATIC_URL = '/static/'
 
 STATICFILES_DIRS = ( os.path.join('static'), )
 
-# Default primary key field type
-# https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = "localhost"
 
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+EMAIL_USE_TLS = False
+EMAIL_USE_SSL = False
+EMAIL_PORT = 587
+
+EMAIL_HOST_USER = "admin@balo.com"
+EMAIL_HOST_PASSWORD = "1234"
+DEFAULT_FROM_EMAIL = "admin@balo.com"
+DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"

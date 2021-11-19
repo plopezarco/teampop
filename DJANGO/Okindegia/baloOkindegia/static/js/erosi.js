@@ -157,6 +157,7 @@ function erosi() {
         </div>`
                 $('.pay').click(function(e) {
                     ordaindu()
+                    $(this).find(">:first-child").attr('disabled', 'disabled')
                 });
                 btn.click();
             }
@@ -221,7 +222,9 @@ function ordaindu() {
         url: "/ordaindu/",
         data: { csrfmiddlewaretoken: csrftoken, produktuak: JSON.stringify(localStorageIrakurri()), totala: tot },
         success: function(response) {
-            Swal.fire('Eskerrik asko', 'Zure erosketa ondo gauzatu da. Eskerrik asko', 'success')
+            Swal.fire({ title: 'Eskerrik asko', text: 'Zure erosketa ondo gauzatu da. Eskerrik asko', icon: 'success', confirmButtonText: 'Ok' }).then((result) => {
+                location.replace("/index")
+            })
             localStorageBorratu()
         },
         error: function(response) {

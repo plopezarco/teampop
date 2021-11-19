@@ -40061,3 +40061,11 @@ tfoot th:first-child {
     overflow-y: scroll;
     max-height: 500px;
 }
+
+.profila {
+    text-decoration: underline;
+}
+
+.profila:hover {
+    color: #db545a;
+}
