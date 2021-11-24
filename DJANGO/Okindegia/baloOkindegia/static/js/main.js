@@ -38,6 +38,7 @@ $(document).ready(function() {
         mezuaBidali(document.forms["mezua-form"])
         document.forms["mezua-form"].reset()
     });
+
 });
 window.onscroll = function() {
     scrollFunction();

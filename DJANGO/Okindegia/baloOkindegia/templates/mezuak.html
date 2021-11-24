@@ -8,17 +8,13 @@
                 <div class="u-layout-row">
                     <div class="row">
                         {%for m in mezuak%}
-                        <div class="col-6" style="padding: 10px;">
+                        <div class="col-12" style="padding: 10px;">
                             <h4 class="media-heading">{{m.izena}} ({{m.email}})</h4>
                             <p>{{m.mezua}}</p>
-                            <ul class="list-unstyled list-inline media-detail pull-left">
-                                <li><i class="fa fa-calendar"></i>27/02/2014</li>
-                            </ul>
                             <ul class="list-unstyled list-inline media-detail pull-right">
                                 <li class=""><a href="mailto:{{m.email}}">Reply</a></li>
                             </ul>
                         </div>
-
                         {%endfor%}
                     </div>
                 </div>

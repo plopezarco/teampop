@@ -126,11 +126,9 @@ function erosi() {
     var div = document.getElementById("ordaindu")
     produktuLista = localStorageIrakurri()
     if (produktuLista.length > 0) {
-        var btn = document.getElementById('erosi-btn')
-        btn.removeAttribute('data-target')
-        btn.removeAttribute('data-toggle')
         if (dataKonprobatu(document.getElementById("data-ordua").value)) {
             if (document.getElementById("helbidea-final").value) {
+                var btn = document.getElementById('erosi-btn')
                 btn.setAttribute('data-target', "#staticBackdrop")
                 btn.setAttribute('data-toggle', "modal")
                 if (div.innerHTML.trim() === '') {
@@ -183,7 +181,12 @@ function erosi() {
                         ordaindu()
                         $("#pay-btn").attr('disabled', 'disabled')
                     });
-                    btn.click();
+
+                    btn.click()
+                    if (btn.hasAttribute('data-target')) {
+                        btn.removeAttribute('data-target')
+                        btn.removeAttribute('data-toggle')
+                    }
                 }
                 $('#txartela-input').on('input', function(e) {
                     var val = $(this).val();
