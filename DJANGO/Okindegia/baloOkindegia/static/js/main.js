@@ -121,6 +121,7 @@ function login(erabiltzailea, pasahitza) {
 }
 
 function register(form) {
+    document.getElementById("register-btn").setAttribute("disabled", "")
     var user = {
         izena: form["izena"].value,
         abizena: form["abizena"].value,
@@ -135,6 +136,7 @@ function register(form) {
             url: "/register/",
             data: { csrfmiddlewaretoken: csrftoken, user: JSON.stringify(user) },
             success: function(response) {
+                document.getElementById("register-btn").removeAttribute("disabled")
                 location.reload()
             },
             error: function(response) {

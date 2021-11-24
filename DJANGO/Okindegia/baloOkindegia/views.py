@@ -45,14 +45,17 @@ def register(request):
             user = User.objects.create_user(username = newUser["erab"], password = newUser["pass1"], email = newUser["email"], first_name = newUser["izena"], last_name = newUser["abizena"])
             user.save()
             login(request,user)
-            email = EmailMessage(
-            subject = 'Erregistro Berria: ' + user.username,
-            body = render_to_string('email/register.html', {'user' : user}),
-            from_email = settings.DEFAULT_FROM_EMAIL,
-            to = ['register@balo.com'],
-            )
-            email.content_subtype = "html"
-            email.send()
+            try:  
+                email = EmailMessage(
+                subject = 'Erregistro Berria: ' + user.username,
+                body = render_to_string('email/register.html', {'user' : user}),
+                from_email = settings.DEFAULT_FROM_EMAIL,
+                to = ['register@balo.com'],
+                )
+                email.content_subtype = "html"
+                email.send()
+            except Exception as e:
+                print(e)
             return JsonResponse({},status=200)
     return JsonResponse({},status=400)
 
@@ -110,7 +113,7 @@ def mezuaGorde(request):
 @login_required
 @user_passes_test(lambda u: u.is_superuser)
 def mezua(request):
-    mezuakList = Mezua.objects.all()
+    mezuakList = Mezua.objects.all().order_by("-id")
     dicc = {'mezuak' : mezuakList}
     return render(request, "mezuak.html", dicc)
 
@@ -123,7 +126,6 @@ def ordaindu(request):
     data += timedelta(hours=1)
     helbideatxt = request.POST.get('helbidea')
     try:    
-        print(request.user.id)
         bezeroa = User.objects.filter(id = request.user.id).first()
         fecha = timezone.now().isoformat()
         ticket = Ticket.objects.create(data = fecha, totala = totala, id_bezeroa = bezeroa, entrega_data = data, helbidea = helbideatxt)
@@ -134,7 +136,6 @@ def ordaindu(request):
             produktua = Produktua.objects.filter(id = p["id"]).first()
             lerroa = Ticket_Lerroa.objects.create(kantitatea = p["kopurua"], subtotala = subtotala, id_produktua = produktua, id_ticket = ticket)
             lerroa.save()
-
         try:
             ticket = Ticket.objects.filter(id = ticket.id).first()
             lerroak = Ticket_Lerroa.objects.filter(id_ticket = ticket).select_related('id_produktua').all()
