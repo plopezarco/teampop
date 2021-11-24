@@ -34,12 +34,16 @@
                     </li>
                     <li class="u-nav-item">
                         <a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="/contact" style="padding: 10px 20px;">Kontaktua</a>
-                    </li> {% if user.is_authenticated %}
+                    </li> {% if user.is_authenticated %} {% if user.is_superuser %}
                     <li class="u-nav-item">
-                        <a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="/user_logout" id="logout-btn" style="cursor: pointer;" style="padding: 10px 20px;">Logout</a>
+                        <a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="/mezuak" style="padding: 10px 20px;">Mezuak</a>
+                    </li>
+                    {%endif%}
+                    <li class="u-nav-item">
+                        <p style="padding: 10px 10px;"><b>Ongi etorri, <a href="/profila" class="profila">{{user.username}}</a></b>
                     </li>
                     <li class="u-nav-item">
-                        <p style="padding: 10px 10px;"><b>Ongi etorri, {{user.username}}</b></a>
+                        <a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="/user_logout" id="logout-btn" style="cursor: pointer;" style="padding: 10px 20px;">Logout</a>
                     </li>
                     {% else %}
                     <li class="u-nav-item">
@@ -52,7 +56,7 @@
                         </a>
 
                         <div id="saskia" class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarCollapse">
-                            <table id="saskia-lista" class="table">
+                            <table id="saskia-lista" class="table table-scroll">
                                 <thead>
                                     <tr>
                                         <th>Irudia</th>
@@ -67,7 +71,7 @@
                                     <tr>
                                         <td colspan="5">
                                             <a href="/erosi" id="erosketa-egin" class="btn btn-primary btn-block">Erosi</a>
-                                            <a href="#" id="saskia-hustu" class="btn btn-danger btn-block">Saskia Hustu</a>
+                                            <a href="#0" id="saskia-hustu" class="btn btn-danger btn-block">Saskia Hustu</a>
                                         </td>
                                     </tr>
                                 </tfoot>
@@ -85,20 +89,33 @@
                                 <a class="u-button-style u-nav-link" href="/index">Hasiera</a>
                             </li>
                             <li class="u-nav-item">
+                                <a class="u-button-style u-nav-link" href="/produktuak">Okindegia</a>
+                            </li>
+                            <li class="u-nav-item">
                                 <a class="u-button-style u-nav-link" href="/about">Guri Buruz</a>
                             </li>
                             <li class="u-nav-item">
                                 <a class="u-button-style u-nav-link" href="/contact">Kontaktua</a>
                             </li>
+                            {% if user.is_authenticated %} {% if user.is_superuser %}
                             <li class="u-nav-item">
-                                <a class="u-button-style u-nav-link" id="login2" style="cursor: pointer;" onclick="login()">Login</a>
+                                <a class="u-button-style u-nav-link" href="/mezuak" style="padding: 10px 20px;">Mezuak</a>
+                            </li>
+                            {%endif%}
+                            <li class="u-nav-item">
+                                <p style="padding: 10px 10px;"><b>Ongi etorri, <a href="/profila" class="profila">{{user.username}}</a></b>
                             </li>
                             <li class="u-nav-item">
-                                <a class="u-button-style u-nav-link" id="logout2" style="cursor: pointer; display: none;" onclick="logout()">Logout</a>
+                                <a class="u-button-style u-nav-link " href="/user_logout" style="cursor: pointer;" style="padding: 10px 20px;">Logout</a>
                             </li>
+                            {% else %}
                             <li class="u-nav-item">
-                                <a href="#" class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base saskia-erakutsi" id="saskia2" style="cursor: pointer;">
-                                    <img src="{%static 'images/cesta2.svg'%}" class="saskia " title="Saskia ">
+                                <a class="u-button-style u-nav-link" id="login-btn2" style="cursor: pointer;" style="padding: 10px 20px;">Login</a>
+                            </li>
+                            {%endif%}
+                            <li class="u-nav-item">
+                                <a href="/erosi" class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base saskia-erakutsi" id="saskia2" style="cursor: pointer;">
+                                    <img src="{%static 'images/cesta2.svg'%}" class="saskia" title="Saskia">
                                 </a>
                             </li>
                         </ul>

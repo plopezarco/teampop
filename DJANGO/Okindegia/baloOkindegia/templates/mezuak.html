@@ -1,0 +1,24 @@
+{% extends "base.html "%}{% load static %} {% block title %} Mezuak {%endblock%} {% block content%}
+<link rel="stylesheet " href="{%static 'css/Contact.css'%} " media="screen">
+<link rel="stylesheet " href="{%static 'css/mezuak.css'%} " media="screen">
+<section class="u-align-center u-grey-5 u-clearfix u-section-1" id="sec-a793">
+    <div class=" u-clearfix u-sheet u-sheet-1">
+        <div class="u-clearfix u-expanded-width u-gutter-10 u-layout-wrap u-layout-wrap-1 ">
+            <div class="u-gutter-0 u-layout">
+                <div class="u-layout-row">
+                    <div class="row">
+                        {%for m in mezuak%}
+                        <div class="col-12" style="padding: 10px;">
+                            <h4 class="media-heading">{{m.izena}} ({{m.email}})</h4>
+                            <p>{{m.mezua}}</p>
+                            <ul class="list-unstyled list-inline media-detail pull-right">
+                                <li class=""><a href="mailto:{{m.email}}">Reply</a></li>
+                            </ul>
+                        </div>
+                        {%endfor%}
+                    </div>
+                </div>
+            </div>
+        </div>
+</section>
+{%endblock%}

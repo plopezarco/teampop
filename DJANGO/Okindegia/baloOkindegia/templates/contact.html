@@ -1,4 +1,5 @@
 {% extends "base.html "%}{% load static %} {% block title %} Kontaktua {%endblock%} {% block content%}
+<link rel="stylesheet " href="{%static 'css/Contact.css'%} " media="screen">
 <section class="u-align-center u-grey-5 u-clearfix u-section-1" id="sec-a793">
     <div class=" u-clearfix u-sheet u-sheet-1 ">
         <div class="u-clearfix u-expanded-width u-gutter-10 u-layout-wrap u-layout-wrap-1 ">
@@ -16,27 +17,27 @@
                                         &#128337; &nbsp;Ordutegia: <br> Astelehenetik larunbatera: 7:30 - 20:00<br>Igandea eta Jaiegunak: 7:30 - 14:00</p>
                                 </div>
                             </div>
-                            <div class="u-align-left u-container-style u-layout-cell u-left-cell u-size-30 u-layout-cell-2 ">
-                                <div class="u-container-layout u-valign-top u-container-layout-2 ">
-                                    <div class="u-form u-form-1 ">
-                                        <form action="# " method="POST " onsubmit="bidalita() " class="u-clearfix u-form-spacing-10 u-form-vertical u-inner-form " style="padding: 10px " source="custom " name="form-5 ">
-                                            <div class="u-form-group u-form-name u-form-group-1 ">
-                                                <label for="name-5359 " class="u-form-control-hidden u-label ">Izena</label>
-                                                <input type="text " placeholder="Izena " id="name-5359 " name="name " class="u-border-1 u-white u-border-grey-30 u-input u-input-rectangle " required=" ">
+                            <div class="u-align-left u-container-style u-layout-cell u-left-cell u-size-30 u-layout-cell-2">
+                                <div class="u-container-layout u-valign-top u-container-layout-2">
+                                    <div class="u-form u-form-1">
+                                        <form method="POST" id="mezua-form" class="u-clearfix u-form-spacing-10 u-form-vertical u-inner-form" style="padding: 10px" name="form-5">
+                                            {% csrf_token %}
+                                            <div class="u-form-group u-form-name u-form-group-1">
+                                                <label for="izena-5359 " class="u-form-control-hidden u-label">Izena</label>
+                                                <input type="text" maxlength="50" placeholder="Izena" id="izena-5359 " name="izena" class="u-border-1 u-white u-border-grey-30 u-input u-input-rectangle" autocomplete="off" required>
                                             </div>
-                                            <div class="u-form-email u-form-group u-form-group-2 ">
-                                                <label for="email-5359 " class="u-form-control-hidden u-label ">Emaila</label>
-                                                <input type="email " placeholder="Email " id="email-5359 " name="email " class="u-border-1 u-white u-border-grey-30 u-input u-input-rectangle " required=" ">
+                                            <div class="u-form-email u-form-group u-form-group-2">
+                                                <label for="email-5359 " class="u-form-control-hidden u-label">Emaila</label>
+                                                <input type="email" maxlength="50" placeholder="Email" id="email-5359" name="email" class="u-border-1 u-white u-border-grey-30 u-input u-input-rectangle" autocomplete="off" required>
                                             </div>
-                                            <div class="u-form-group u-form-message u-form-group-3 ">
-                                                <label for="message-5359 " class="u-form-control-hidden u-label ">Mezua</label>
-                                                <textarea placeholder="Mezua " rows="4 " cols="50 " id="message-5359 " name="message " class="u-border-1 u-white u-border-grey-30 u-input u-input-rectangle " required=" "></textarea>
+                                            <div class="u-form-group u-form-message u-form-group-3">
+                                                <label for="mezua-5359" class="u-form-control-hidden u-label">Mezua</label>
+                                                <textarea placeholder="Mezua" rows="4" cols="50" id="mezua-5359" name="mezua" class="u-border-1 u-white u-border-grey-30 u-input u-input-rectangle" autocomplete="off" required></textarea>
                                             </div>
-                                            <div class="u-form-group u-form-submit u-form-group-4 ">
-                                                <a href="# " class="u-btn u-btn-submit u-button-style ">Bidali</a>
-                                                <input type="submit " value="submit " class="u-form-control-hidden ">
+                                            <div class="u-form-group u-form-submit u-form-group-4">
+                                                <input class="u-btn u-btn-submit u-button-style" id="mezua-bidali" type="submit" style="float: left; margin-right: 10px;" value="Bidali">
+                                                <input type="reset" class="u-btn u-btn-submit u-button-style" value="Garbitu">
                                             </div>
-                                            <input type="hidden" value=" " name="recaptchaResponse ">
                                         </form>
                                     </div>
                                 </div>
